@@ -3,11 +3,11 @@ FactoryBot.define do
     name { Faker::Mountain.name }
     contact_name { Faker::Name.name }
     contact_email { Faker::Internet.email }
-    phone_number { 1112223344 }
-    address { Faker::Address.street_address }
+    phone_number { '1112223344' }
+    street_address { Faker::Address.street_address }
     city { "McAllen" }
     state { "TX" }
-    zip { 78503 }
+    zip { '78503' }
     user { User.first }
   end
 
