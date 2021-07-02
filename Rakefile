@@ -4,3 +4,12 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+require 'graphql/rake_task'
+require_relative 'config/application'
+
+Rails.application.load_tasks
+
+GraphQL::RakeTask.new(
+  schema_name: 'BackendSchema', # this needs to be your generated schema class name
+)
