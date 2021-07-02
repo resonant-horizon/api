@@ -28,12 +28,12 @@ FactoryBot.define do
     city     { Faker::Address.city }
     state    { Faker::Address.state_abbr }
     zip      { Faker::Address.zip }
-    ssn      { Faker::Number.number(digits: 6)}
-    passport_number { Faker::Number.number(digits: 10) }
+    ssn      { '999887777'}
+    passport_number { '1856498839' }
     passport_issue_date { Faker::Date.backward(days: 14) }
     passport_expiration { Faker::Date.forward(days: 500) }
     birthdate { Faker::Date.birthday(min_age: 18, max_age: 99)}
-    birth_place { Faker::Address.city }
+    birth_city { Faker::Address.city }
     nationality { Faker::Nation.nationality }
     passport_sex { 1 }
     american_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
