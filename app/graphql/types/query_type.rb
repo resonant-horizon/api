@@ -13,8 +13,9 @@ module Types
       argument :id, ID, required: true
     end
 
-    field :organizations, [Types::OrganizationType], null: false do
-      description 'Find all organizations'
+    field :user_organizations, [Types::OrganizationType], null: false do
+      description 'Find all organizations for a user'
+      argument :user_id, ID, required: true
     end
 
     field :organization, Types::OrganizationType, null: false do
@@ -32,6 +33,10 @@ module Types
 
     def organization(id:)
       Organization.find(id)
+    end
+
+    def user_organizations(user_id:)
+      Organization.find_by_user(user_id)
     end
 
     def organizations

@@ -7,28 +7,28 @@ RSpec.describe Types::QueryType, type: :request do
     let(:organization) { create(:organization, user: user) }
     let(:user2) { create(:user) }
     let(:organization2) { create(:organization, user: user2) }
-    let(:query_type_all) { "organizations" }
+    let(:query_type_all) { "userOrganizations" }
     let(:query_string_all) { <<~GQL
-      {
-        organizations {
-          id
-          name
-          contactName
-          contactEmail
-          phoneNumber
-          streetAddress
-          city
-          state
-          zip
-          user {
+        query userOrganizations($userId: ID!) {
+          user(id: $userId) {
             firstName
             lastName
             email
             phoneNumber
             id
+            organizations {
+              id
+              name
+              contactName
+              contactEmail
+              phoneNumber
+              streetAddress
+              city
+              state
+              zip
+            }
           }
         }
-      }
     GQL
     }
     let(:query_type_one) { "organization" }
@@ -54,17 +54,18 @@ RSpec.describe Types::QueryType, type: :request do
     context 'Get All Organizations' do
 
       before do
+        user
         organization
-        query query_string_all
+        query query_string_all, variables: { userId: "#{user.id}" }
       end
 
       it 'should return no errors' do
         expect(gql_response.errors).to be_nil
       end
 
-      it 'should return an array of all organization objects' do
-        expect(gql_response.data[query_type_all]).to be_an Array
-        expect(gql_response.data[query_type_all]).to eq([{
+      it 'should return an array of all user organizations objects' do
+        expect(gql_response.data["user"]["organizations"]).to be_an Array
+        expect(gql_response.data["user"]["organizations"]).to eq([{
           "id" => organization.id.to_s,
           "name" => organization.name,
           "contactName" => organization.contact_name,
@@ -73,14 +74,7 @@ RSpec.describe Types::QueryType, type: :request do
           "city" => organization.city,
           "state" => organization.state,
           "streetAddress" => organization.street_address,
-          "zip" => organization.zip,
-          "user" => {
-            "id" => user.id.to_s,
-            "email" => user.email,
-            "firstName" => user.first_name,
-            "lastName" => user.last_name,
-            "phoneNumber" => user.phone_number
-          }
+          "zip" => organization.zip
         }])
       end
     end
