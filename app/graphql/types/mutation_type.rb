@@ -1,10 +1,7 @@
 module Types
   class MutationType < Types::BaseObject
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World"
+    field :create_organization, mutation: Mutations::Organizations::CreateOrganization do
+      description 'Create an organization belonging to a user'
     end
   end
 end
