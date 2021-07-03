@@ -7,5 +7,9 @@ module Types
     field :update_organization, mutation: Mutations::Organizations::UpdateOrganization do
       description 'Update an organization'
     end
+
+    field :destroy_organization, mutation: Mutations::Organizations::DestroyOrganization do
+      description 'Destroy an organization'
+    end
   end
 end
