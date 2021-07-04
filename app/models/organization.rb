@@ -13,5 +13,4 @@ class Organization < ApplicationRecord
                         :state,
                         :zip,
                         :user_id
-
 end
