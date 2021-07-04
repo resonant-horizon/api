@@ -51,11 +51,13 @@ RSpec.describe Types::QueryType, type: :request do
       }
     GQL
     }
-    context 'Get All Organizations' do
+    context 'Get All Organizations for a user' do
 
       before do
         user
+        user2
         organization
+        organization2
         query query_string_all, variables: { userId: "#{user.id}" }
       end
 
@@ -76,6 +78,7 @@ RSpec.describe Types::QueryType, type: :request do
           "streetAddress" => organization.street_address,
           "zip" => organization.zip
         }])
+        expect(gql_response.data["user"]["id"]).to_not eq(user2.id)
       end
     end
 
