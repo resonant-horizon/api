@@ -9,8 +9,8 @@ RSpec.describe Types::QueryType, type: :request do
     let(:organization2) { create(:organization, user: user2) }
     let(:query_type_user_orgs) { "userOrganizations" }
     let(:query_user_orgs) { <<~GQL
-        query userOrganizations($userId: ID!) {
-          user(id: $userId) {
+        query user($id: ID!) {
+          user(id: $id) {
             firstName
             lastName
             email
@@ -116,7 +116,7 @@ RSpec.describe Types::QueryType, type: :request do
         user2
         organization
         organization2
-        query query_user_orgs, variables: { userId: "#{user.id}" }
+        query query_user_orgs, variables: { id: "#{user.id}" }
       end
 
       it 'should return no errors' do

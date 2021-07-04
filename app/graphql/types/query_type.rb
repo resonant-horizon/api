@@ -39,10 +39,6 @@ module Types
       Organization.find(id)
     end
 
-    def user_organizations(user_id:)
-      Organization.find_by_user(user_id)
-    end
-
     def organizations
       Organization.all
     end
