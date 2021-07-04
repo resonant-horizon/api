@@ -7,8 +7,8 @@ RSpec.describe Types::QueryType, type: :request do
     let(:organization) { create(:organization, user: user) }
     let(:user2) { create(:user) }
     let(:organization2) { create(:organization, user: user2) }
-    let(:query_type_all) { "userOrganizations" }
-    let(:query_string_all) { <<~GQL
+    let(:query_type_user_orgs) { "userOrganizations" }
+    let(:query_user_orgs) { <<~GQL
         query userOrganizations($userId: ID!) {
           user(id: $userId) {
             firstName
@@ -51,6 +51,64 @@ RSpec.describe Types::QueryType, type: :request do
       }
     GQL
     }
+    let(:query_type_all) { "organizations" }
+    let(:query_string_all) { <<~GQL
+        {
+          organizations {
+            id
+            name
+            contactName
+            contactEmail
+            phoneNumber
+            streetAddress
+            city
+            state
+            zip
+            user {
+              firstName
+              lastName
+              email
+              phoneNumber
+              id
+            }
+          }
+        }
+      GQL
+      }
+
+    context 'get all organizations' do
+      before do
+        organization
+        query query_string_all
+      end
+
+      it 'should return no errors' do
+        expect(gql_response.errors).to be_nil
+      end
+
+      it 'should return an array of all user organizations objects' do
+        expect(gql_response.data[query_type_all]).to be_an Array
+        expect(gql_response.data[query_type_all].first).to eq({
+          "id" => organization.id.to_s,
+          "name" => organization.name,
+          "contactName" => organization.contact_name,
+          "contactEmail" => organization.contact_email,
+          "phoneNumber" => organization.phone_number,
+          "city" => organization.city,
+          "state" => organization.state,
+          "streetAddress" => organization.street_address,
+          "zip" => organization.zip,
+          "user" => {
+            "id" => user.id.to_s,
+            "firstName" => user.first_name,
+            "lastName" => user.last_name,
+            "email" => user.email,
+            "phoneNumber" => user.phone_number
+          }
+        })
+      end
+    end
+
     context 'Get All Organizations for a user' do
 
       before do
@@ -58,7 +116,7 @@ RSpec.describe Types::QueryType, type: :request do
         user2
         organization
         organization2
-        query query_string_all, variables: { userId: "#{user.id}" }
+        query query_user_orgs, variables: { userId: "#{user.id}" }
       end
 
       it 'should return no errors' do

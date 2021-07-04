@@ -23,6 +23,10 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :organizations, [Types::OrganizationType], null: false do
+      description 'Find organization by ID'
+    end
+
     def user(id:)
       User.find(id)
     end

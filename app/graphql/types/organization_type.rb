@@ -1,6 +1,6 @@
 module Types
   class OrganizationType < Types::BaseObject
-    field :user, Types::UserType, null: true
+    field :user, Types::UserType, null: false
 
     field :id, ID, null: false
     field :name, String, null: false
