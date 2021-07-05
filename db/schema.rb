@@ -10,32 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_164355) do
+ActiveRecord::Schema.define(version: 2021_07_05_220749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "employees", force: :cascade do |t|
+  create_table "biographies", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "full_legal_name"
     t.string "phone_number"
     t.string "email"
-    t.string "full_legal_name"
     t.string "street"
     t.string "city"
     t.string "state"
     t.string "zip"
     t.string "ssn"
-    t.string "passport_number"
-    t.date "passport_issue_date"
-    t.date "passport_expiration"
-    t.date "birthdate"
-    t.string "birth_city"
-    t.string "nationality"
-    t.integer "passport_sex"
-    t.string "american_frequent_flyer"
-    t.string "delta_frequent_flier"
-    t.string "united_frequent_flyer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "employee_id", null: false
+    t.index ["employee_id"], name: "index_biographies_on_employee_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.integer "employment_status"
     t.datetime "created_at", precision: 6, null: false
@@ -46,7 +43,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_164355) do
     t.boolean "substitute", default: false
     t.boolean "union_designee", default: false
     t.boolean "archived", default: false
+    t.bigint "biography_id", null: false
+    t.bigint "passport_id", null: false
+    t.bigint "traveler_id", null: false
+    t.index ["biography_id"], name: "index_employees_on_biography_id"
     t.index ["organization_id"], name: "index_employees_on_organization_id"
+    t.index ["passport_id"], name: "index_employees_on_passport_id"
+    t.index ["traveler_id"], name: "index_employees_on_traveler_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
@@ -65,6 +68,35 @@ ActiveRecord::Schema.define(version: 2021_07_05_164355) do
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
+  create_table "passports", force: :cascade do |t|
+    t.string "passport_number"
+    t.string "surname"
+    t.string "given_names"
+    t.string "nationality"
+    t.string "birth_place"
+    t.date "birthdate"
+    t.date "expiration_date"
+    t.date "issue_date"
+    t.integer "passport_sex"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "employee_id", null: false
+    t.index ["employee_id"], name: "index_passports_on_employee_id"
+  end
+
+  create_table "travelers", force: :cascade do |t|
+    t.string "delta_ff"
+    t.string "american_ff"
+    t.string "united_ff"
+    t.string "lufthansa_ff"
+    t.string "british_air_ff"
+    t.integer "seat_preference"
+    t.bigint "employee_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_travelers_on_employee_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -74,7 +106,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_164355) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "biographies", "employees"
+  add_foreign_key "employees", "biographies"
   add_foreign_key "employees", "organizations"
+  add_foreign_key "employees", "passports"
+  add_foreign_key "employees", "travelers"
   add_foreign_key "employees", "users"
   add_foreign_key "organizations", "users"
+  add_foreign_key "passports", "employees"
+  add_foreign_key "travelers", "employees"
 end
