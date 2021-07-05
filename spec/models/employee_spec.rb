@@ -19,6 +19,8 @@ describe Employee do
     it { should validate_presence_of :ssn }
     it { should validate_presence_of :union_designee }
     it { should validate_presence_of :employment_status }
+    it { should validate_presence_of :instrument_section }
+    it { should validate_presence_of :role }
     it { should validate_presence_of :user_id }
     it { should validate_presence_of :organization_id }
   end
