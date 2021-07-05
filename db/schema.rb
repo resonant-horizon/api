@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_153818) do
+ActiveRecord::Schema.define(version: 2021_07_05_164355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,11 +37,15 @@ ActiveRecord::Schema.define(version: 2021_07_05_153818) do
     t.string "delta_frequent_flier"
     t.string "united_frequent_flyer"
     t.bigint "organization_id", null: false
-    t.boolean "union_designee"
     t.integer "employment_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.integer "instrument_section"
+    t.integer "role", default: [], array: true
+    t.boolean "substitute", default: false
+    t.boolean "union_designee", default: false
+    t.boolean "archived", default: false
     t.index ["organization_id"], name: "index_employees_on_organization_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
