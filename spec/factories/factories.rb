@@ -39,8 +39,11 @@ FactoryBot.define do
     american_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
     delta_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
     united_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
-    organization { Organization.first}
+    organization { Organization.first }
     union_designee { false }
     employment_status { 1 }
+    instrument_section { 2 }
+    role { [1] }
+    user { User.first }
   end
 end

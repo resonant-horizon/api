@@ -1,18 +1,11 @@
 class Employee < ApplicationRecord
   belongs_to :organization
   belongs_to :user
+  has_one :passport
+  has_one :biography
+  has_one :frequent_flyer
 
-  validates_presence_of :first_name,
-                        :last_name,
-                        :phone_number,
-                        :email,
-                        :full_legal_name,
-                        :street,
-                        :city,
-                        :state,
-                        :zip,
-                        :ssn,
-                        :union_designee,
+  validates_presence_of :union_designee,
                         :employment_status,
                         :user_id,
                         :organization_id,
@@ -23,11 +16,6 @@ class Employee < ApplicationRecord
     full_time: 0,
     part_time: 1,
     contract: 2
-  }, _prefix: true
-  enum passport_sex: {
-    male: 0,
-    female: 1,
-    other: 2
   }, _prefix: true
   enum instrument_section: {
     soprano: 1,
