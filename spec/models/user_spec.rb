@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe User do
   describe 'relationships' do
+    it { should have_many :employees }
+    it { should have_many(:organizations).through(:employees) }
   end
 
   describe 'validations' do
