@@ -23,12 +23,12 @@ class Employee < ApplicationRecord
     full_time: 0,
     part_time: 1,
     contract: 2
-  }
+  }, _prefix: true
   enum passport_sex: {
     male: 0,
     female: 1,
     other: 2
-  }
+  }, _prefix: true
   enum instrument_section: {
     soprano: 1,
     alto: 2,
@@ -71,7 +71,7 @@ class Employee < ApplicationRecord
     harp: 39,
     harpsichord: 40,
     nonmusician: 41,
-  }
+  }, _prefix: true
   enum role: {
     concert_manager: 0,
     stage_manager: 1,
@@ -97,5 +97,5 @@ class Employee < ApplicationRecord
     cfo: 21,
     cto: 22,
     development: 23
-  }
+  }, _prefix: true
 end
