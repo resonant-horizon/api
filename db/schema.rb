@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_220749) do
+ActiveRecord::Schema.define(version: 2021_07_05_225045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,9 +43,9 @@ ActiveRecord::Schema.define(version: 2021_07_05_220749) do
     t.boolean "substitute", default: false
     t.boolean "union_designee", default: false
     t.boolean "archived", default: false
-    t.bigint "biography_id", null: false
-    t.bigint "passport_id", null: false
-    t.bigint "traveler_id", null: false
+    t.bigint "passport_id"
+    t.bigint "biography_id"
+    t.bigint "traveler_id"
     t.index ["biography_id"], name: "index_employees_on_biography_id"
     t.index ["organization_id"], name: "index_employees_on_organization_id"
     t.index ["passport_id"], name: "index_employees_on_passport_id"
