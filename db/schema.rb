@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_05_225045) do
+ActiveRecord::Schema.define(version: 2021_07_06_135257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 2021_07_05_225045) do
     t.index ["employee_id"], name: "index_biographies_on_employee_id"
   end
 
+  create_table "employee_roles", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_employee_roles_on_employee_id"
+    t.index ["role_id"], name: "index_employee_roles_on_role_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.integer "employment_status"
@@ -39,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_07_05_225045) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.integer "instrument_section"
-    t.integer "role", default: [], array: true
     t.boolean "substitute", default: false
     t.boolean "union_designee", default: false
     t.boolean "archived", default: false
@@ -84,6 +92,13 @@ ActiveRecord::Schema.define(version: 2021_07_05_225045) do
     t.index ["employee_id"], name: "index_passports_on_employee_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "travelers", force: :cascade do |t|
     t.string "delta_ff"
     t.string "american_ff"
@@ -107,6 +122,8 @@ ActiveRecord::Schema.define(version: 2021_07_05_225045) do
   end
 
   add_foreign_key "biographies", "employees"
+  add_foreign_key "employee_roles", "employees"
+  add_foreign_key "employee_roles", "roles"
   add_foreign_key "employees", "biographies"
   add_foreign_key "employees", "organizations"
   add_foreign_key "employees", "passports"

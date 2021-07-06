@@ -3,13 +3,13 @@ class Employee < ApplicationRecord
   belongs_to :user
   has_one :passport
   has_one :biography
-  has_one :frequent_flyer
+  has_one :traveler
+  has_many :employee_roles
+  has_many :roles, through: :employee_roles
 
-  validates_presence_of :union_designee,
-                        :employment_status,
+  validates_presence_of :employment_status,
                         :user_id,
                         :organization_id,
-                        :role,
                         :instrument_section
 
   enum employment_status: {
@@ -59,31 +59,5 @@ class Employee < ApplicationRecord
     harp: 39,
     harpsichord: 40,
     nonmusician: 41,
-  }, _prefix: true
-  enum role: {
-    concert_manager: 0,
-    stage_manager: 1,
-    music_director: 2,
-    associate_conductor: 3,
-    assistant_conductor: 4,
-    tour_manager: 5,
-    production_manager: 6,
-    company_manager: 7,
-    librarian: 8,
-    concertmaster: 9,
-    principal: 10,
-    vice_principal: 11,
-    section: 12,
-    guest_artist: 13,
-    videographer: 14,
-    sound_engineer: 15,
-    usher: 16,
-    stage_crew: 17,
-    lighting: 18,
-    ceo: 19,
-    coo: 20,
-    cfo: 21,
-    cto: 22,
-    development: 23
   }, _prefix: true
 end
