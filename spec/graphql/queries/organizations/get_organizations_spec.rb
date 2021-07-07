@@ -7,6 +7,11 @@ RSpec.describe Types::QueryType, type: :request do
     let(:organization) { create(:organization, user: user) }
     let(:user2) { create(:user) }
     let(:organization2) { create(:organization, user: user2) }
+    let(:basic_employee) { create(:employee, organization: organization) }
+    let(:basic_employee2) { create(:employee, organization: organization2) }
+    let(:full_employee) { create(:employee_with_all_data, organization: organization) }
+    let(:full_employee2) { create(:employee_with_all_data, organization: organization2) }
+
     let(:query_type_user_orgs) { "userOrganizations" }
     let(:query_user_orgs) { <<~GQL
         query user($id: ID!) {
@@ -76,6 +81,75 @@ RSpec.describe Types::QueryType, type: :request do
       GQL
       }
 
+  let(:query_type_employees) { "org employees"}
+  let(:query_string_employees) { <<~GQL
+    query organization($id: ID!) {
+      organization(id: $id) {
+        id
+        name
+        user {
+          id
+        }
+        employees {
+          id
+          employmentStatus
+          instrumentSection
+          roles {
+            name
+          }
+          substitute
+          unionDesignee
+          archived
+        }
+      }
+    }
+  GQL
+  }
+#   employees {
+#     id
+#     biography {
+#       id
+#       firstName
+#       lastName
+#       phoneNumber
+#       email
+#       fullLegalName
+#       street
+#       city
+#       state
+#       zip
+#       ssn
+#     }
+#     traveler {
+#       seatPreference
+#       americanFf
+#       deltaFf
+#       unitedFf
+#     }
+#     passport {
+#       passportNumber
+#       surname
+#       given_names
+#       nationality
+#       birthPlace
+#       birthdate
+#       expirationDate
+#       issueDate
+#       birthdate
+#       birthCity
+#       nationality
+#       passportSex
+#     }
+#     employmentStatus
+#     instrumentSection
+#     role {
+#       name
+#     }
+#     substitute
+#     unionDesignee
+#     archived
+#   }
+# }
     context 'get all organizations' do
       before do
         organization
@@ -169,6 +243,36 @@ RSpec.describe Types::QueryType, type: :request do
             "id" => user.id.to_s
           }
         })
+      end
+    end
+
+    context 'employees for an organization' do
+      before do
+        organization
+        organization2
+        basic_employee
+        basic_employee2
+        query query_string_employees,
+          variables: {
+            id: organization.id
+          }
+      end
+
+      it 'should return no errors' do
+        expect(gql_response.errors).to be_nil
+      end
+
+      it 'should return employees for an organization' do
+        expect(gql_response.data["organization"]["employees"]).to be_an(Array)
+        expect(gql_response.data["organization"]["employees"]).to eq([{
+            "id" => basic_employee.id.to_s,
+            "employmentStatus" => basic_employee.employment_status,
+            "instrumentSection" => basic_employee.instrument_section,
+            "roles" => basic_employee.roles,
+            "substitute" => basic_employee.substitute,
+            "unionDesignee" =>  basic_employee.union_designee,
+            "archived" => basic_employee.archived
+        }])
       end
     end
   end

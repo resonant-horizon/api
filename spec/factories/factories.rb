@@ -24,12 +24,13 @@ FactoryBot.define do
     user { User.first }
     organization { Organization.first }
 
-    factory :employee_with_all_data
+    factory :employee_with_all_data do
       after(:create) do |employee|
         create(:biography, employee: employee)
         create(:traveler, employee: employee)
         create(:passport, employee: employee)
         create(:employee_role, employee: employee)
+      end
     end
   end
 
