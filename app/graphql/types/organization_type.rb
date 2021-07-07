@@ -1,6 +1,7 @@
 module Types
   class OrganizationType < Types::BaseObject
     field :user, Types::UserType, null: false
+    field :employees, [Types::EmployeeType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -14,6 +15,10 @@ module Types
 
     def user
       Loaders::BelongsToLoader.for(User).load(object.user_id)
+    end
+
+    def employees
+      Loaders::HasManyLoader.for(Employee, :organization_id).load(object.id)
     end
   end
 end
