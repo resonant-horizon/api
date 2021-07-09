@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Organization do
   describe 'relationships' do
     it { should belong_to :user }
-    # it { should have_many :employees }
+    it { should have_many :employees }
     # it { should have_many :seasons }
     # it { should have_many :tours }
   end

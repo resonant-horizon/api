@@ -24,7 +24,7 @@ module Types
     end
 
     field :organizations, [Types::OrganizationType], null: false do
-      description 'Find organization by ID'
+      description 'Find all organizations'
     end
 
     def user(id:)

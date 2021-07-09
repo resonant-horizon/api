@@ -19,6 +19,55 @@ FactoryBot.define do
   end
 
   factory :employee do
+    employment_status { 1 }
+    instrument_section { 2 }
+    user { User.first }
+    organization { Organization.first }
+
+    factory :employee_with_all_data do
+      after(:create) do |employee|
+        create(:biography, employee: employee)
+        create(:traveler, employee: employee)
+        create(:passport, employee: employee)
+        create(:employee_role, employee: employee)
+      end
+    end
+  end
+
+  factory :employee_role do
+    employee { Employee.last }
+    role { create(:role) }
+  end
+
+  factory :role do
+    name { ["concert manager",
+     "stage manager",
+     "music director",
+     "associate conductor",
+     "assistant conductor",
+     "tour manager",
+     "production manager",
+     "company manager",
+     "librarian",
+     "concertmaster",
+     "principal",
+     "vice principal",
+     "section",
+     "guest artist",
+     "videographer",
+     "sound engineer",
+     "usher",
+     "stage crew",
+     "lighting",
+     "ceo",
+     "coo",
+     "cfo",
+     "cto",
+     "development"].sample }
+  end
+
+  factory :biography do
+    employee { Employee.last }
     first_name   { Faker::Name.first_name }
     last_name    { Faker::Name.last_name }
     phone_number { "3333333333" }
@@ -29,18 +78,26 @@ FactoryBot.define do
     state    { Faker::Address.state_abbr }
     zip      { Faker::Address.zip }
     ssn      { '999887777'}
+  end
+
+  factory :passport do
+    surname { Faker::Name.first_name }
+    given_names { Faker::Name.last_name }
     passport_number { '1856498839' }
-    passport_issue_date { Faker::Date.backward(days: 14) }
-    passport_expiration { Faker::Date.forward(days: 500) }
+    issue_date { Faker::Date.backward(days: 14) }
+    expiration_date { Faker::Date.forward(days: 500) }
     birthdate { Faker::Date.birthday(min_age: 18, max_age: 99)}
-    birth_city { Faker::Address.city }
+    birth_place { Faker::Address.city }
     nationality { Faker::Nation.nationality }
-    passport_sex { 1 }
-    american_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
-    delta_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
-    united_frequent_flyer { Faker::Alphanumeric.alphanumeric(number: 6) }
-    organization { Organization.first}
-    union_designee { false }
-    employment_status { 1 }
+    passport_sex { (0..2).to_a.sample }
+    employee { Employee.last }
+  end
+
+  factory :traveler do
+    employee { Employee.last }
+    seat_preference { (0..2).to_a.sample }
+    american_ff { Faker::Alphanumeric.alphanumeric(number: 6) }
+    delta_ff { Faker::Alphanumeric.alphanumeric(number: 6) }
+    united_ff { Faker::Alphanumeric.alphanumeric(number: 6) }
   end
 end
