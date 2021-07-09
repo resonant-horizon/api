@@ -2,10 +2,10 @@ module Types
   class EmployeeType < Types::BaseObject
     field :user, Types::UserType, null: false
     field :organization, Types::OrganizationType, null: false
-    # field :passport, Types::PassportType
-    # field :biography, Types::BiographyType
-    # field :traveler, Types::TravelerType
-    field :roles, [Types::RoleType], null: false
+    field :passport, Types::PassportType, null: true
+    field :biography, Types::BiographyType, null: true
+    field :traveler, Types::TravelerType, null: true
+    field :roles, [Types::RoleType], null: true
 
     field :id, ID, null: false
     field :employment_status, String, null: false
@@ -23,18 +23,7 @@ module Types
     end
 
     def roles
-      Loaders::HasManyLoader.for(Role, :name).load(object.id)
+      Loaders::AssociationLoader.for(object.class, :roles).load(object)
     end
-    # def passport
-    #   Loaders::BelongsToLoader.for(Passport).load(object.passport_id)
-    # end
-    #
-    # def biography
-    #   Loaders::BelongsToLoader.for(Biography).load(object.passport_id)
-    # end
-    #
-    # def traveler
-    #   Loaders::BelongsToLoader.for(Traveler).load(object.passport_id)
-    # end
   end
 end

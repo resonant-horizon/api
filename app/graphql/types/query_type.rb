@@ -27,11 +27,6 @@ module Types
       description 'Find all organizations'
     end
 
-    # field :org_employees, [Types::EmployeeType], null: true do
-    #   description 'Return all employees for an organization'
-    #   argument :id, ID, required: true
-    # end
-
     def user(id:)
       User.find(id)
     end
@@ -47,9 +42,5 @@ module Types
     def organizations
       Organization.all
     end
-
-    # def org_employees(org_id:)
-    #   Employee.where(organization_id: org_id)
-    # end
   end
 end
