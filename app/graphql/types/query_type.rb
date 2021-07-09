@@ -27,6 +27,10 @@ module Types
       description 'Find all organizations'
     end
 
+    field :roles, [Types::RoleType], null: false do
+      description 'Find all roles'
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -41,6 +45,10 @@ module Types
 
     def organizations
       Organization.all
+    end
+
+    def roles
+      Role.all
     end
   end
 end
