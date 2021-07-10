@@ -56,30 +56,33 @@ module Mutations
         end
       end
 
-    #   describe 'sad path' do
-    #     it 'returns errors' do
-    #       user = create(:user)
-    #
-    #       post '/graphql', params: { query: g_query(user_id: user.id) }
-    #       json = JSON.parse(response.body, symbolize_names: true)
-    #       expect(json).to have_key(:errors)
-    #     end
-    #
-    #     def g_query(user_id:)
-    #       <<~GQL
-    #         mutation {
-    #           createOrganization( input: {
-    #             userId: #{user_id}
-    #           } ){
-    #             id
-    #             user {
-    #               id
-    #             }
-    #           }
-    #         }
-    #       GQL
-    #     end
-    #   end
+      describe 'sad path' do
+        it 'returns errors' do
+          user = create(:user)
+          user2 = create(:user)
+          organization = create(:organization, user: user)
+
+          post '/graphql', params: { query: g_query(user_id: user2.id, organization_id: organization.id) }
+          json = JSON.parse(response.body, symbolize_names: true)
+          expect(json).to have_key(:errors)
+        end
+
+        def g_query(user_id:, organization_id:)
+          <<~GQL
+            mutation {
+              createEmployee( input: {
+                userId: #{user_id}
+                organizationId: #{organization_id}
+              } ){
+                id
+                user {
+                  id
+                }
+              }
+            }
+          GQL
+        end
+      end
     end
   end
 end
