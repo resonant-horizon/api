@@ -50,36 +50,37 @@ module Mutations
         end
       end
 
-      # describe 'sad path' do
-      #   it 'returns with errors' do
-      #     user = create(:user)
-      #     organization = create(:organization, user_id: user.id)
-      #
-      #     post '/graphql', params: { query: g_query(id: organization.id) }
-      #     json = JSON.parse(response.body, symbolize_names: true)
-      #     expect(json).to have_key(:errors)
-      #   end
-      #
-      #   def g_query(id:)
-      #     <<~GQL
-      #       mutation {
-      #         destroyEmployee( input: {
-      #           id: 'not an id'
-      #         }) {
-      #           id
-      #           firstName
-      #           lastName
-      #           email
-      #           phoneNumber
-      #           note
-      #           user {
-      #             id
-      #           }
-      #         }
-      #       }
-      #     GQL
-      #   end
-      # end
+      describe 'sad path' do
+        it 'returns with errors' do
+          user = create(:user)
+          organization = create(:organization, user_id: user.id)
+          employee = create(:employee, user: user, organization: organization)
+
+          post '/graphql', params: { query: g_query(id: employee.id) }
+          json = JSON.parse(response.body, symbolize_names: true)
+          expect(json).to have_key(:errors)
+        end
+
+        def g_query(id:)
+          <<~GQL
+            mutation {
+              destroyEmployee( input: {
+                id: 'not an id'
+              }) {
+                id
+                firstName
+                lastName
+                email
+                phoneNumber
+                note
+                user {
+                  id
+                }
+              }
+            }
+          GQL
+        end
+      end
     end
   end
 end
