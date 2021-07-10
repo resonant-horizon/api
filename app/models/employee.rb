@@ -1,10 +1,10 @@
 class Employee < ApplicationRecord
   belongs_to :organization
   belongs_to :user
-  has_one :passport
-  has_one :biography
-  has_one :traveler
-  has_many :employee_roles
+  has_one :passport, dependent: :destroy
+  has_one :biography, dependent: :destroy
+  has_one :traveler, dependent: :destroy
+  has_many :employee_roles, dependent: :destroy
   has_many :roles, through: :employee_roles
 
   validates_presence_of :employment_status,
