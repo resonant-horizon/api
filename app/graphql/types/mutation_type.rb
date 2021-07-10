@@ -16,10 +16,10 @@ module Types
       description 'Create an employee belonging to a user'
     end
 
-    # field :update_employee, mutation: Mutations::Employees::UpdateEmployee do
-    #   description 'Update an employee'
-    # end
-    #
+    field :update_employee, mutation: Mutations::Employees::UpdateEmployee do
+      description 'Update an employee'
+    end
+    
     field :destroy_employee, mutation: Mutations::Employees::DestroyEmployee do
       description 'Destroy an employee'
     end
