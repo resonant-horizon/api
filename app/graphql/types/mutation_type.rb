@@ -20,8 +20,8 @@ module Types
     #   description 'Update an employee'
     # end
     #
-    # field :destroy_employee, mutation: Mutations::Employees::DestroyEmployee do
-    #   description 'Destroy an employee'
-    # end
+    field :destroy_employee, mutation: Mutations::Employees::DestroyEmployee do
+      description 'Destroy an employee'
+    end
   end
 end
