@@ -25,39 +25,39 @@ module Types
     end
 
     field :create_biography, mutation: Mutations::Employees::Biographies::CreateBiography do
-      description 'Create a biography belonging to an employee'
+      description 'Create an employee biography'
     end
 
-    # field :update_biography, mutation: Mutations::Employees::Biographies::UpdateBiography do
-    #   description 'Update a biography'
-    # end
+    field :update_biography, mutation: Mutations::Employees::Biographies::UpdateBiography do
+      description 'Update an employee biography'
+    end
 
-    # field :destroy_biography, mutation: Mutations::Employees::Biographies::DestroyBiography do
-    #   description 'Destroy a biography'
-    # end
+    field :destroy_biography, mutation: Mutations::Employees::Biographies::DestroyBiography do
+      description 'Destroy an employee biography'
+    end
 
     field :create_passport, mutation: Mutations::Employees::Passports::CreatePassport do
-      description 'Create a passport belonging to an employee'
+      description 'Create an employee passport'
     end
 
-    # field :update_passport, mutation: Mutations::Employees::Passports::UpdatePassport do
-    #   description 'Update a passport'
-    # end
+    field :update_passport, mutation: Mutations::Employees::Passports::UpdatePassport do
+      description 'Update an employee passport'
+    end
 
-    # field :destroy_passport, mutation: Mutations::Employees::Passports::DestroyPassport do
-    #   description 'Destroy a passport'
-    # end
+    field :destroy_passport, mutation: Mutations::Employees::Passports::DestroyPassport do
+      description 'Destroy an employee passport'
+    end
 
     field :create_traveler, mutation: Mutations::Employees::Travelers::CreateTraveler do
-      description 'Create a traveler belonging to an employee'
+      description 'Create an employee traveler'
     end
 
-    # field :update_traveler, mutation: Mutations::Employees::Travelers::UpdateTraveler do
-    #   description 'Update a traveler'
-    # end
+    field :update_traveler, mutation: Mutations::Employees::Travelers::UpdateTraveler do
+      description 'Update an employee traveler'
+    end
 
-    # field :destroy_traveler, mutation: Mutations::Employees::Travelers::DestroyTraveler do
-    #   description 'Destroy a traveler'
-    # end
+    field :destroy_traveler, mutation: Mutations::Employees::Travelers::DestroyTraveler do
+      description 'Destroy an employee traveler'
+    end
   end
 end
