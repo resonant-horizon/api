@@ -13,12 +13,12 @@ RSpec.describe Mutations::Employees::Travelers::CreateTraveler, type: :request d
     let(:mutation_string) { <<~GQL
       mutation createTraveler($input: CreateTravelerInput!) {
         createTraveler(input: $input) {
-          delta_ff
-          american_ff
-          united_ff
-          lufthansa_ff
-          british_air_ff
-          seat_preference
+          deltaFf
+          americanFf
+          unitedFf
+          lufthansaFf
+          britishAirFf
+          seatPreference
           employee {
             id
           }

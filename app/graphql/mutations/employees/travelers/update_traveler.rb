@@ -1,8 +1,9 @@
 module Mutations
   module Employees
     module Travelers
-      class CreateTraveler < ::Mutations::BaseMutation
-        argument :employee_id,      ID,     required: true
+      class UpdateTraveler < ::Mutations::BaseMutation
+        argument :id, ID, required: true
+        argument :employee_id, ID, required: false
         argument :delta_ff,         String, required: false
         argument :american_ff,      String, required: false
         argument :united_ff,        String, required: false
@@ -12,8 +13,10 @@ module Mutations
 
         type Types::TravelerType
 
-        def resolve(**attributes)
-          Traveler.create!(attributes)
+        def resolve(id:, **attributes)
+        Traveler.find(id).tap do |traveler|
+          traveler.update!(attributes)
+          end
         end
       end
     end
