@@ -27,6 +27,15 @@ module Types
       description 'Find all organizations'
     end
 
+    field :employee, Types::EmployeeType, null: false do
+      description 'Find an employee by ID'
+      argument :id, ID, required: true
+    end
+
+    field :roles, [Types::RoleType], null: false do
+      description 'Find all roles'
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -41,6 +50,14 @@ module Types
 
     def organizations
       Organization.all
+    end
+
+    def roles
+      Role.all
+    end
+
+    def employee(id:)
+      Employee.find(id)
     end
   end
 end

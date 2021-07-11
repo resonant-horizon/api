@@ -1,86 +1,81 @@
 require 'rails_helper'
+include GraphQL::TestHelpers
 
-module Mutations
-  module Organizations
-    RSpec.describe CreateOrganization, type: :request do
-      describe '.resolve' do
+RSpec.describe Mutations::Organizations::CreateOrganization, type: :request do
+  describe 'creating an organization' do
+    let(:user) { create(:user) }
+    let(:mutation_type) { "createOrganization" }
+    let(:mutation_string) { <<~GQL
+      mutation createOrganization($input: CreateOrganizationInput!) {
+        createOrganization(input: $input) {
+          id
+          name
+          contactName
+          contactEmail
+          phoneNumber
+          streetAddress
+          city
+          state
+          zip
+          user {
+            id
+          }
+        }
+      }
+    GQL
+    }
+    context 'happy path' do
+      before do
+        mutation mutation_string,
+          variables: {
+            input: {
+              userId: user.id,
+              name: "LAMC",
+              contactName: "Sahundra Beans",
+              contactEmail: "sb@123.com",
+              phoneNumber: "3214568899",
+              streetAddress: "1 Best Choir Rd.",
+              city: "Los Angeles",
+              state: "CA",
+              zip: "78200"
+            }
+          }
+        end
+
         it 'creates an organization' do
-          user = create(:user)
-
-          expect do
-            post '/graphql', params: { query: g_query(user_id: user.id) }
-          end.to change { Organization.count }.by(1)
+          expect(Organization.count).to eq(1)
         end
 
         it 'returns an organization' do
-          user = create(:user)
-
-          post '/graphql', params: { query: g_query(user_id: user.id) }
-          json = JSON.parse(response.body, symbolize_names: true)
-          data = json[:data][:createOrganization]
+          data = gql_response.data["createOrganization"]
 
           expect(data).to include(
-            id: "#{Organization.first.id}",
-            name: "LAMC",
-            user: { "id": user.id.to_s }
+            "id" => "#{Organization.first.id}",
+            "name" => "LAMC",
+            "contactName" => "Sahundra Beans",
+            "contactEmail" => "sb@123.com",
+            "phoneNumber" => "3214568899",
+            "streetAddress" => "1 Best Choir Rd.",
+            "city" => "Los Angeles",
+            "state" => "CA",
+            "zip" => "78200",
+            "user" => { "id" => user.id.to_s }
           )
-        end
-
-        def g_query(user_id:)
-          <<~GQL
-            mutation {
-              createOrganization( input: {
-                name: "LAMC"
-                userId: "#{user_id}"
-                contactName: "Sahundra Beans"
-                contactEmail: "sb@123.com"
-                phoneNumber: "3214568899"
-                streetAddress: "1 Best Choir Rd."
-                city: "Los Angeles"
-                state: "CA"
-                zip: "78200"
-              } ){
-                id
-                name
-                contactName
-                contactEmail
-                phoneNumber
-                streetAddress
-                city
-                state
-                zip
-                user {
-                  id
-                }
-              }
-            }
-          GQL
         end
       end
 
-      describe 'sad path' do
-        it 'returns errors' do
-          user = create(:user)
-
-          post '/graphql', params: { query: g_query(user_id: user.id) }
-          json = JSON.parse(response.body, symbolize_names: true)
-          expect(json).to have_key(:errors)
-        end
-
-        def g_query(user_id:)
-          <<~GQL
-            mutation {
-              createOrganization( input: {
-                userId: #{user_id}
-              } ){
-                id
-                user {
-                  id
-                }
-              }
+    context 'sad path' do
+      before do
+        mutation mutation_string,
+          variables: {
+            input: {
+              var: "Invalid input for org creation"
             }
-          GQL
-        end
+          }
+      end
+
+      it 'should return errors' do
+        expect(gql_response.errors).to be_truthy
       end
     end
   end
