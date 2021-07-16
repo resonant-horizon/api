@@ -13,8 +13,12 @@ describe Employee do
     it { should have_many(:seasons).through(:season_employees) }
     it { should have_many :tour_employees }
     it { should have_many(:tours).through(:tour_employees) }
-    it { shoudl have_many :event_employees }
-    it { should have_many(:service_days).through(:event_employees) }
+    it { should have_many :event_employees }
+    it { should have_many(:service_days).through(:service_employees) }
+    it { should have_many :event_employees }
+    it { should have_many(:events).through(:event_employees) }
+    it { should have_many :passengers }
+    it { should have_many(:flights).through(:passengers) }
   end
 
   describe 'validations' do
