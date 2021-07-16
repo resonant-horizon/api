@@ -11,6 +11,9 @@ class Passport < ApplicationRecord
                         :expiration_date,
                         :issue_date,
                         :passport_sex
+  # validates_date :expiration_date, after: :issue_date
+  # validates_date :expiration_date, after: :birthdate
+  # validates_date :issue_date, after: :birthdate
 
   enum passport_sex: {
     male: 0,

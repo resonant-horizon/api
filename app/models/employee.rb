@@ -1,11 +1,28 @@
 class Employee < ApplicationRecord
   belongs_to :organization
   belongs_to :user
+
   has_one :passport, dependent: :destroy
   has_one :biography, dependent: :destroy
   has_one :traveler, dependent: :destroy
+
+  has_many :season_employees
+  has_many :seasons, through: :season_employees
+
+  has_many :tour_employees
+  has_many :tours, through: :tour_employees
+
   has_many :employee_roles, dependent: :destroy
   has_many :roles, through: :employee_roles
+
+  has_many :service_employees
+  has_many :service_days, through: :service_employees
+
+  has_many :event_employees
+  has_many :events, through: :event_employees
+
+  has_many :passengers
+  has_many :flights, through: :passengers
 
   validates_presence_of :employment_status,
                         :user_id,
