@@ -100,4 +100,25 @@ FactoryBot.define do
     delta_ff { Faker::Alphanumeric.alphanumeric(number: 6) }
     united_ff { Faker::Alphanumeric.alphanumeric(number: 6) }
   end
+
+  factory :season do
+    name { Faker::Mountain.name }
+    organization { Organization.first }
+    start_date { Faker::Date.backward(days: 14) }
+    end_date { Faker::Date.forward(days: 500) }
+
+    # factory :season_with_employees do
+    #   create_list(:employee_with_all_data, organization: Season.last.organization, 3)
+    #   after(:create) do |season|
+    #     create(:season_employee, employee: Employee.first, season: Season.last)
+    #     create(:season_employee, )
+  end
+
+
+#   FactoryBot.define do
+#   factory :ticket do
+#     association :image1, factory: :image
+#     association :image2, factory: :image
+#   end
+# end
 end

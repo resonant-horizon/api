@@ -2,6 +2,7 @@ module Types
   class OrganizationType < Types::BaseObject
     field :user, Types::UserType, null: false
     field :employees, [Types::EmployeeType], null: true
+    field :seasons, [Types::SeasonType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false

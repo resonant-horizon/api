@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_180014) do
+ActiveRecord::Schema.define(version: 2021_07_17_173151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,12 +177,12 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
   create_table "seasons", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "name", null: false
-    t.string "description", null: false
+    t.string "description"
     t.date "start_date", null: false
     t.date "end_date", null: false
-    t.boolean "archived", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_archived", default: false
     t.index ["organization_id"], name: "index_seasons_on_organization_id"
   end
 
