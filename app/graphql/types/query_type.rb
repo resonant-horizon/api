@@ -36,6 +36,11 @@ module Types
       description 'Find all roles'
     end
 
+    field :season, Types::SeasonType, null: false do
+      description 'Find a season by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -58,6 +63,10 @@ module Types
 
     def employee(id:)
       Employee.find(id)
+    end
+
+    def season(id:)
+      Season.find(id)
     end
   end
 end
