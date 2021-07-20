@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_173151) do
+ActiveRecord::Schema.define(version: 2021_07_19_193727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,9 @@ ActiveRecord::Schema.define(version: 2021_07_17_173151) do
     t.string "contactable_type"
     t.bigint "contactable_id"
     t.boolean "is_permanent_party", default: true
+    t.bigint "organization_id", null: false
     t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
+    t.index ["organization_id"], name: "index_contacts_on_organization_id"
   end
 
   create_table "employee_roles", force: :cascade do |t|
@@ -283,9 +285,12 @@ ActiveRecord::Schema.define(version: 2021_07_17_173151) do
     t.string "zip", null: false
     t.string "country", null: false
     t.integer "capacity"
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_venues_on_organization_id"
   end
 
   add_foreign_key "biographies", "employees"
+  add_foreign_key "contacts", "organizations"
   add_foreign_key "employee_roles", "employees"
   add_foreign_key "employee_roles", "roles"
   add_foreign_key "employees", "organizations"
@@ -311,4 +316,5 @@ ActiveRecord::Schema.define(version: 2021_07_17_173151) do
   add_foreign_key "tour_employees", "tours"
   add_foreign_key "tours", "organizations"
   add_foreign_key "travelers", "employees"
+  add_foreign_key "venues", "organizations"
 end
