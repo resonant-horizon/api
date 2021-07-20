@@ -10,6 +10,7 @@ module Types
     field :zip, String, null: false
     field :country, String, null: false
     field :capacity, Integer, null: true
+    field :is_headquarters, Boolean, null: false
 
     # def organization
     #   Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
