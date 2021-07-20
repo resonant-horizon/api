@@ -28,5 +28,9 @@ module Types
     def contacts
       Loaders::AssociationLoader.for(object.class, :contacts).load(object)
     end
+
+    def service_days
+      Loaders::AssociationLoader.for(object.class, :service_days).load(object)
+    end
   end
 end

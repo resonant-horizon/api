@@ -1,10 +1,10 @@
 module Types
   class TourType < Types::BaseObject
     field :organization, Types::OrganizationType, null: false
-    # field :employees, [Types::EmployeeType], null: true
-    # field :service_days, [Types::ServiceDayType], null: true
-    # field :venues, [Types::VenueType], null: true
-    # field :contacts, [Types::ContactType], null: true
+    field :employees, [Types::EmployeeType], null: true
+    field :service_days, [Types::ServiceDayType], null: true
+    field :venues, [Types::VenueType], null: true
+    field :contacts, [Types::ContactType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -18,16 +18,20 @@ module Types
       Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
     end
 
-    # def employees
-    #   Loaders::AssociationLoader.for(object.class, :employees).load(object)
-    # end
-    #
-    # def venues
-    #   Loaders::AssociationLoader.for(object.class, :venues).load(object)
-    # end
-    #
-    # def contacts
-    #   Loaders::AssociationLoader.for(object.class, :contacts).load(object)
-    # end
+    def employees
+      Loaders::AssociationLoader.for(object.class, :employees).load(object)
+    end
+
+    def venues
+      Loaders::AssociationLoader.for(object.class, :venues).load(object)
+    end
+
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
+
+    def service_days
+      Loaders::AssociationLoader.for(object.class, :service_days).load(object)
+    end
   end
 end

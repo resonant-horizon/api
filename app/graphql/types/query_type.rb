@@ -41,6 +41,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :tour, Types::TourType, null: false do
+      description 'Find a tour by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -67,6 +72,10 @@ module Types
 
     def season(id:)
       Season.find(id)
+    end
+
+    def tour(id:)
+      Tour.find(id)
     end
   end
 end
