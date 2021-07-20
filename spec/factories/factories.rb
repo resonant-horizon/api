@@ -200,6 +200,22 @@ FactoryBot.define do
 
   factory :hotel do
   end
+
+  factory :flight do
+    airline_network   { 2 }
+    airline           { 1 }
+    flight_number     { Faker::Alphanumeric.alphanumeric(number: 6) }
+    departure_time    { Faker::Time.forward(days: 23, period: :morning) }
+    departure_airport { Faker::GreekPhilosophers.name }
+    arrival_time      { Faker::Time.forward(days: 23, period: :evening) }
+    arrival_airport   { Faker::GreekPhilosophers.name }
+    service_day       { ServiceDay.last }
+  end
+
+  factory :passenger do
+    employee { Employee.last }
+    flight   { Flight.last }
+  end
 end
 
 
