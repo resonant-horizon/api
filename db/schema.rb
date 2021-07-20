@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_20_175701) do
+ActiveRecord::Schema.define(version: 2021_07_20_212056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_07_20_175701) do
     t.bigint "flight_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "locator", null: false
     t.index ["employee_id"], name: "index_passengers_on_employee_id"
     t.index ["flight_id"], name: "index_passengers_on_flight_id"
   end
