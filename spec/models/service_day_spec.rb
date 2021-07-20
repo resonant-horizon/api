@@ -15,15 +15,8 @@ describe ServiceDay do
   end
 
   describe 'validations' do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :description }
     it { should validate_presence_of :date }
     # it { should validate that date falls within season/tour dates}
-    it { should validate_presence_of :has_travel }
-    it { should validate_presence_of :has_rehearsal }
-    it { should validate_presence_of :has_concert }
-    it { should validate_presence_of :has_loadin }
-    it { should validate_presence_of :has_loadout }
     it { should validate_presence_of :workable_id }
   end
 end

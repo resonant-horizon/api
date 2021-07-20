@@ -10,14 +10,6 @@ class ServiceDay < ApplicationRecord
   has_many :events
   has_many :flights
 
-  validates_presence_of :name,
-                        :date,
-                        :description,
-                        :has_travel,
-                        :workable_id,
-                        :has_rehearsal,
-                        :has_concert,
-                        :has_loadin,
-                        :has_loadout,
-                        :has_travel
+  validates_presence_of :date,
+                        :workable_id
 end

@@ -1,8 +1,11 @@
 module Types
   class SeasonType < Types::BaseObject
     field :organization, Types::OrganizationType, null: false
-    # field :employees, [Types::EmployeeType], null: true
-    
+    field :employees, [Types::EmployeeType], null: true
+    field :service_days, [Types::ServiceDayType], null: true
+    field :venues, [Types::VenueType], null: true
+    field :contacts, [Types::ContactType], null: true
+
     field :id, ID, null: false
     field :name, String, null: false
     field :description, String, null: true
@@ -14,8 +17,16 @@ module Types
       Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
     end
 
-    # def employees
-    #   Loaders::HasManyLoader.for(Employee, :season_id).load(object.id)
-    # end
+    def employees
+      Loaders::AssociationLoader.for(object.class, :employees).load(object)
+    end
+
+    def venues
+      Loaders::AssociationLoader.for(object.class, :venues).load(object)
+    end
+
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
   end
 end

@@ -15,10 +15,7 @@ describe Tour do
   describe 'validations' do
     it { should validate_presence_of :organization_id }
     it { should validate_presence_of :name }
-    it { should validate_presence_of :description }
     it { should validate_presence_of :start_date }
     it { should validate_presence_of :end_date }
-    it { should validate_presence_of :is_archived }
-    it { should validate_presence_of :is_international }
   end
 end
