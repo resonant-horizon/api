@@ -132,6 +132,25 @@ FactoryBot.define do
     organization { Organization.last }
     start_date   { Faker::Date.backward(days: 14) }
     end_date     { Faker::Date.forward(days: 100) }
+
+    factory :tour_with_basic_employee do
+      after(:create) do |tour|
+        create(:employee, organization: tour.organization)
+        create(:tour_employee)
+      end
+    end
+
+    factory :tour_with_full_employee do
+      after(:create) do |tour|
+        create(:employee_with_all_data, organization: tour.organization)
+        create(:tour_employee)
+      end
+    end
+  end
+
+  factory :tour_employee do
+    employee { Employee.last }
+    tour     { Tour.last }
   end
 
   factory :service_day do
@@ -164,9 +183,9 @@ FactoryBot.define do
 
   factory :contact do
     organization { Organization.last }
-    name { Faker::Name.first_name }
+    name         { Faker::Name.first_name }
     phone_number { "9998883322"}
-    email { "me@contact.com" }
+    email        { "me@contact.com" }
 
     for_venue
 
