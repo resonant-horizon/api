@@ -1,10 +1,10 @@
 module Types
   class PassengerType < Types::BaseObject
-    # field :contacts
     field :flight, Types::FlightType, null: false
     field :employee, Types::EmployeeType, null: false
 
     field :id, ID, null: false
+    field :locator, String, null: false
 
     def flight
       Loaders::BelongsToLoader.for(Flight).load(object.flight_id)

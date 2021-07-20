@@ -6,6 +6,7 @@ module Types
     field :venues, [Types::VenueType], null: true
     field :contacts, [Types::ContactType], null: true
     field :flights, [Types::FlightType], null: true
+    field :passengers, [Types::PassengerType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
