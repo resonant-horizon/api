@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_193727) do
+ActiveRecord::Schema.define(version: 2021_07_20_175701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 2021_07_19_193727) do
     t.string "country", null: false
     t.integer "capacity"
     t.bigint "organization_id", null: false
+    t.boolean "is_headquarters", default: false
     t.index ["organization_id"], name: "index_venues_on_organization_id"
   end
 
