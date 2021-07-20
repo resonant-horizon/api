@@ -35,5 +35,9 @@ module Types
     def service_days
       Loaders::AssociationLoader.for(object.class, :service_days).load(object)
     end
+
+    def passengers
+      Loaders::AssociationLoader.for(object.class, :passengers).load(object)
+    end
   end
 end
