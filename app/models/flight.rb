@@ -10,7 +10,6 @@ class Flight < ApplicationRecord
                         :departure_airport,
                         :arrival_time,
                         :arrival_airport,
-                        :is_international,
                         :service_day_id
 
   enum airline_network: {
