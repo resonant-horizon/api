@@ -3,6 +3,7 @@ module Types
     field :user, Types::UserType, null: false
     field :employees, [Types::EmployeeType], null: true
     field :seasons, [Types::SeasonType], null: true
+    field :tours, [Types::TourType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
