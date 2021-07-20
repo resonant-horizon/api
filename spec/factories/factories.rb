@@ -215,6 +215,7 @@ FactoryBot.define do
   factory :passenger do
     employee { Employee.last }
     flight   { Flight.last }
+    locator  { Faker::Alphanumeric.alphanumeric(number: 6) }
   end
 end
 
