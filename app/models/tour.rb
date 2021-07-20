@@ -7,6 +7,7 @@ class Tour < ApplicationRecord
   has_many :contacts, through: :venues
   has_many :hotels, through: :service_days
   has_many :flights, through: :service_days
+  has_many :passengers, through: :flights
 
   validates_presence_of :organization_id,
                         :name,

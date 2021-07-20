@@ -10,6 +10,7 @@ describe Tour do
     it { should have_many(:contacts).through(:venues) }
     it { should have_many(:hotels).through(:service_days) }
     it { should have_many(:flights).through(:service_days) }
+    it { should have_many(:passengers).through(:flights) }
   end
 
   describe 'validations' do
