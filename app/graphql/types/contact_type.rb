@@ -11,7 +11,7 @@ module Types
     field :is_permanent_party, Boolean, null: false
 
     def venue
-      # Will have to do this for hotels, too
+      # Will have to do this for hotels, too. Might have to be contactable instead or add hotel as well
       Loaders::AssociationLoader.for(object.class, :contactable).load(object)
     end
   end

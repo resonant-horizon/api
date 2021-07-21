@@ -16,9 +16,9 @@ module Types
     def organization
       Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
     end
-    #
-    # def employees
-    #   Loaders::AssociationLoader.for(object.class, :employees).load(object)
-    # end
+
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
   end
 end
