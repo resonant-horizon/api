@@ -1,4 +1,5 @@
 class Hotel < ApplicationRecord
+  belongs_to :organization
   has_many :contacts, as: :contactable
   has_many :service_hotels
   has_many :service_days, through: :service_hotels

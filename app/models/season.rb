@@ -7,9 +7,7 @@ class Season < ApplicationRecord
   has_many :contacts, through: :venues
 
   validates_presence_of :name,
-                        :description,
                         :start_date,
                         :end_date,
-                        :archived,
                         :organization_id
 end

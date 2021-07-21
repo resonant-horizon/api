@@ -15,7 +15,6 @@ describe Flight do
     it { should validate_presence_of :arrival_time }
     it { should validate_presence_of :departure_airport }
     it { should validate_presence_of :arrival_airport }
-    it { should validate_presence_of :is_international }
     it { should validate_presence_of :service_day_id }
   end
 end

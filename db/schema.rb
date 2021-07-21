@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_180014) do
+ActiveRecord::Schema.define(version: 2021_07_21_153730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,9 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
     t.string "contactable_type"
     t.bigint "contactable_id"
     t.boolean "is_permanent_party", default: true
+    t.bigint "organization_id", null: false
     t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
+    t.index ["organization_id"], name: "index_contacts_on_organization_id"
   end
 
   create_table "employee_roles", force: :cascade do |t|
@@ -116,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
     t.string "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_hotels_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -138,6 +142,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
     t.bigint "flight_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "locator", null: false
     t.index ["employee_id"], name: "index_passengers_on_employee_id"
     t.index ["flight_id"], name: "index_passengers_on_flight_id"
   end
@@ -177,12 +182,12 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
   create_table "seasons", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "name", null: false
-    t.string "description", null: false
+    t.string "description"
     t.date "start_date", null: false
     t.date "end_date", null: false
-    t.boolean "archived", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_archived", default: false
     t.index ["organization_id"], name: "index_seasons_on_organization_id"
   end
 
@@ -283,9 +288,13 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
     t.string "zip", null: false
     t.string "country", null: false
     t.integer "capacity"
+    t.bigint "organization_id", null: false
+    t.boolean "is_headquarters", default: false
+    t.index ["organization_id"], name: "index_venues_on_organization_id"
   end
 
   add_foreign_key "biographies", "employees"
+  add_foreign_key "contacts", "organizations"
   add_foreign_key "employee_roles", "employees"
   add_foreign_key "employee_roles", "roles"
   add_foreign_key "employees", "organizations"
@@ -294,6 +303,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
   add_foreign_key "event_employees", "events"
   add_foreign_key "events", "service_days"
   add_foreign_key "flights", "service_days"
+  add_foreign_key "hotels", "organizations"
   add_foreign_key "organizations", "users"
   add_foreign_key "passengers", "employees"
   add_foreign_key "passengers", "flights"
@@ -311,4 +321,5 @@ ActiveRecord::Schema.define(version: 2021_07_16_180014) do
   add_foreign_key "tour_employees", "tours"
   add_foreign_key "tours", "organizations"
   add_foreign_key "travelers", "employees"
+  add_foreign_key "venues", "organizations"
 end

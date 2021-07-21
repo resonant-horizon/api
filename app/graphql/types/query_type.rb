@@ -36,6 +36,21 @@ module Types
       description 'Find all roles'
     end
 
+    field :season, Types::SeasonType, null: false do
+      description 'Find a season by ID'
+      argument :id, ID, required: true
+    end
+
+    field :tour, Types::TourType, null: false do
+      description 'Find a tour by ID'
+      argument :id, ID, required: true
+    end
+
+    field :venue, Types::VenueType, null: false do
+      description 'Find a venue by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -58,6 +73,18 @@ module Types
 
     def employee(id:)
       Employee.find(id)
+    end
+
+    def season(id:)
+      Season.find(id)
+    end
+
+    def tour(id:)
+      Tour.find(id)
+    end
+
+    def venue(id:)
+      Venue.find(id)
     end
   end
 end

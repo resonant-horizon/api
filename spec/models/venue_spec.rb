@@ -5,6 +5,7 @@ describe Venue do
     it { should have_many :service_venues }
     it { should have_many(:service_days).through(:service_venues) }
     it { should have_many :contacts }
+    it { should belong_to :organization }
   end
 
   describe 'validations' do
