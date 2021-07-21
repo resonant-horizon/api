@@ -166,6 +166,11 @@ FactoryBot.define do
     end
   end
 
+  factory :service_employee do
+    service_day { ServiceDay.last }
+    employee    { Employee.last }
+  end
+
   factory :venue do
     name         { Faker::Coffee.blend_name }
     street       { Faker::Address.street_address }

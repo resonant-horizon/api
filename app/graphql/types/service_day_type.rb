@@ -1,6 +1,6 @@
 module Types
   class ServiceDayType < Types::BaseObject
-    # field :employees, [Types::EmployeeType], null: true
+    field :employees, [Types::EmployeeType], null: true
 
     field :id, ID, null: false
     field :name, String, null: true
@@ -15,9 +15,9 @@ module Types
     # def organization
     #   Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
     # end
-    #
-    # def employees
-    #   Loaders::AssociationLoader.for(object.class, :employees).load(object)
-    # end
+
+    def employees
+      Loaders::AssociationLoader.for(object.class, :employees).load(object)
+    end
   end
 end
