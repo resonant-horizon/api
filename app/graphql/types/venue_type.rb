@@ -1,7 +1,7 @@
 module Types
   class VenueType < Types::BaseObject
     field :organization, Types::OrganizationType, null: false
-    # field :contacts
+    field :contacts, [Types::ContactType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
