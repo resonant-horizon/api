@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe Hotel do
   describe 'relationships' do
+    it { should belong_to :organization }
     it { should have_many :service_hotels }
     it { should have_many(:service_days).through(:service_hotels) }
     it { should have_many(:tours).through(:service_days) }
