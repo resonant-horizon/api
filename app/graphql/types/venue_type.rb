@@ -1,5 +1,6 @@
 module Types
   class VenueType < Types::BaseObject
+    field :organization, Types::OrganizationType, null: false
     # field :contacts
 
     field :id, ID, null: false
@@ -12,9 +13,9 @@ module Types
     field :capacity, Integer, null: true
     field :is_headquarters, Boolean, null: false
 
-    # def organization
-    #   Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
-    # end
+    def organization
+      Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
+    end
     #
     # def employees
     #   Loaders::AssociationLoader.for(object.class, :employees).load(object)

@@ -46,6 +46,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :venue, Types::VenueType, null: false do
+      description 'Find a venue by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -76,6 +81,10 @@ module Types
 
     def tour(id:)
       Tour.find(id)
+    end
+
+    def venue(id:)
+      Venue.find(id)
     end
   end
 end
