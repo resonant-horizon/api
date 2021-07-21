@@ -199,6 +199,18 @@ FactoryBot.define do
   end
 
   factory :hotel do
+    organization { Organization.last }
+    name         { Faker::Coffee.blend_name }
+    street       { Faker::Address.street_address }
+    city         { Faker::Address.city }
+    state        { Faker::Address.state_abbr }
+    zip          { Faker::Address.zip }
+    country      { "United States" }
+  end
+
+  factory :service_hotel do
+    hotel       { Hotel.last }
+    service_day { ServiceDay.last }
   end
 
   factory :flight do
