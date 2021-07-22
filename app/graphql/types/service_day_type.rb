@@ -2,6 +2,7 @@ module Types
   class ServiceDayType < Types::BaseObject
     field :employees, [Types::EmployeeType], null: true
     field :venues, [Types::VenueType], null: true
+    field :flights, [Types::FlightType], null: true
 
     field :id, ID, null: false
     field :name, String, null: true
@@ -23,6 +24,10 @@ module Types
 
     def venues
       Loaders::AssociationLoader.for(object.class, :venues).load(object)
+    end
+
+    def flights
+      Loaders::AssociationLoader.for(object.class, :flights).load(object)
     end
   end
 end

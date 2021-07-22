@@ -10,7 +10,7 @@ RSpec.describe Types::QueryType, type: :request do
     let(:day1)  { create(:service_day, :for_tour) }
     let(:venue) { create(:venue, organization: org) }
     let(:service_venue) { create(:service_venue) }
-    let(:query_type_one) { "service day employees" }
+    let(:query_type_one) { "service day venues" }
     let(:query_string_all) { <<~GQL
       query serviceDay($id: ID!) {
         serviceDay(id: $id) {
@@ -23,7 +23,7 @@ RSpec.describe Types::QueryType, type: :request do
       }
     GQL
     }
-    describe "return the employees of a service day" do
+    describe "return the venues of a service day" do
       before do
         org
         tour
