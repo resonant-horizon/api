@@ -62,9 +62,9 @@ RSpec.describe Types::QueryType, type: :request do
           "airlineNetwork" => flight.airline_network,
           "airline" => flight.airline,
           "flightNumber" => flight.flight_number,
-          "departureTime" => flight.departure_time.to_s,
+          "departureTime" => Time.parse(flight.departure_time.to_s).iso8601,
           "departureAirport" => flight.departure_airport,
-          "arrivalTime" => flight.arrival_time.to_s,
+          "arrivalTime" => Time.parse(flight.arrival_time.to_s).iso8601,
           "arrivalAirport" => flight.arrival_airport,
           "isInternational" => flight.is_international,
           "serviceDay" => {

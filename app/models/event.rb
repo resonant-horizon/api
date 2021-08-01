@@ -5,6 +5,5 @@ class Event < ApplicationRecord
 
   validates_presence_of :name,
                         :start_time,
-                        :location,
                         :service_day_id
 end

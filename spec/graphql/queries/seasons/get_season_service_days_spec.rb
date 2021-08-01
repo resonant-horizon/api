@@ -2,7 +2,7 @@ require 'rails_helper'
 include GraphQL::TestHelpers
 
 RSpec.describe Types::QueryType, type: :request do
-  describe 'get employees for a season' do
+  describe 'get service days for a season' do
     let(:user) { create(:user) }
     let(:org) { create(:organization, user: user) }
     let(:org2) { create(:organization, user: user) }

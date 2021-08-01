@@ -51,6 +51,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :service_day, Types::ServiceDayType, null: false do
+      description 'Find a service day by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -85,6 +90,10 @@ module Types
 
     def venue(id:)
       Venue.find(id)
+    end
+
+    def service_day(id:)
+      ServiceDay.find(id)
     end
   end
 end

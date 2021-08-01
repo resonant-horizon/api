@@ -166,6 +166,11 @@ FactoryBot.define do
     end
   end
 
+  factory :service_employee do
+    service_day { ServiceDay.last }
+    employee    { Employee.last }
+  end
+
   factory :venue do
     name         { Faker::Coffee.blend_name }
     street       { Faker::Address.street_address }
@@ -228,6 +233,17 @@ FactoryBot.define do
     employee { Employee.last }
     flight   { Flight.last }
     locator  { Faker::Alphanumeric.alphanumeric(number: 6) }
+  end
+
+  factory :event do
+    name        { Faker::Marketing.buzzwords }
+    start_time  { Faker::Time.forward(days: 23, period: :morning) }
+    service_day { ServiceDay.last }
+  end
+
+  factory :event_employee do
+    event    { Event.last }
+    employee { Employee.last }
   end
 end
 
