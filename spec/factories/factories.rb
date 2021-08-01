@@ -234,6 +234,17 @@ FactoryBot.define do
     flight   { Flight.last }
     locator  { Faker::Alphanumeric.alphanumeric(number: 6) }
   end
+
+  factory :event do
+    name        { Faker::Marketing.buzzwords }
+    start_time  { Faker::Time.forward(days: 23, period: :morning) }
+    service_day { ServiceDay.last }
+  end
+
+  factory :event_employee do
+    event    { Event.last }
+    employee { Employee.last }
+  end
 end
 
 
