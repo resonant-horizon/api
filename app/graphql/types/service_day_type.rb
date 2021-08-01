@@ -5,6 +5,7 @@ module Types
     field :flights, [Types::FlightType], null: true
     field :hotels, [Types::HotelType], null: true
     field :contacts, [Types::ContactType], null: true
+    field :events, [Types::EventType], null: true
 
     field :id, ID, null: false
     field :name, String, null: true
@@ -34,6 +35,10 @@ module Types
 
     def hotels
       Loaders::AssociationLoader.for(object.class, :hotels).load(object)
+    end
+
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
     end
   end
 end

@@ -8,9 +8,9 @@ module Types
     field :airline_network, String, null: false
     field :airline, String, null: false
     field :flight_number, String, null: false
-    field :departure_time, String, null: false
+    field :departure_time, GraphQL::Types::ISO8601DateTime, null: false
     field :departure_airport, String, null: false
-    field :arrival_time, String, null: false
+    field :arrival_time, GraphQL::Types::ISO8601DateTime, null: false
     field :arrival_airport, String, null: false
     field :is_international, Boolean, null: false
 
