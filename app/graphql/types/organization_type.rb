@@ -5,6 +5,7 @@ module Types
     field :seasons, [Types::SeasonType], null: true
     field :tours, [Types::TourType], null: true
     field :contacts, [Types::ContactType], null: true
+    field :venues, [Types::VenueType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -26,6 +27,10 @@ module Types
 
     def contacts
       Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
+
+    def venues
+      Loaders::AssociationLoader.for(object.class, :venues).load(object)
     end
   end
 end
