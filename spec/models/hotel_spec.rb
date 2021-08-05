@@ -6,6 +6,7 @@ describe Hotel do
     it { should have_many :service_hotels }
     it { should have_many(:service_days).through(:service_hotels) }
     it { should have_many(:tours).through(:service_days) }
+    it { should have_many(:seasons).through(:service_days) }
     it { should have_many :contacts }
   end
 
