@@ -4,6 +4,7 @@ class Season < ApplicationRecord
   has_many :season_employees
   has_many :employees, through: :season_employees
   has_many :venues, through: :service_days
+  has_many :hotels, through: :service_days
   has_many :contacts, through: :venues
 
   validates_presence_of :name,

@@ -6,6 +6,7 @@ describe Season do
     it { should have_many :service_days }
     it { should have_many(:employees).through(:season_employees) }
     it { should have_many(:venues).through(:service_days) }
+    it { should have_many(:hotels).through(:service_days) }
     it { should have_many(:contacts).through(:venues) }
   end
 

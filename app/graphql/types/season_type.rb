@@ -4,6 +4,7 @@ module Types
     field :employees, [Types::EmployeeType], null: true
     field :service_days, [Types::ServiceDayType], null: true
     field :venues, [Types::VenueType], null: true
+    field :hotels, [Types::HotelType], null: true
     field :contacts, [Types::ContactType], null: true
 
     field :id, ID, null: false
@@ -31,6 +32,10 @@ module Types
 
     def service_days
       Loaders::AssociationLoader.for(object.class, :service_days).load(object)
+    end
+
+    def hotels
+      Loaders::AssociationLoader.for(object.class, :hotels).load(object)
     end
   end
 end

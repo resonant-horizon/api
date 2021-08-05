@@ -33,5 +33,9 @@ module Types
     def venues
       Loaders::AssociationLoader.for(object.class, :venues).load(object)
     end
+
+    def hotels
+      Loaders::AssociationLoader.for(object.class, :hotels).load(object)
+    end
   end
 end
