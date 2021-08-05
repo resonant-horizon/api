@@ -4,6 +4,7 @@ module Types
     field :employees, [Types::EmployeeType], null: true
     field :seasons, [Types::SeasonType], null: true
     field :tours, [Types::TourType], null: true
+    field :contacts, [Types::ContactType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -21,6 +22,10 @@ module Types
 
     def employees
       Loaders::HasManyLoader.for(Employee, :organization_id).load(object.id)
+    end
+
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
     end
   end
 end
