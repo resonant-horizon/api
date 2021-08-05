@@ -103,7 +103,7 @@ module GraphQL::TestHelpers
 
     converted = variables.deep_transform_keys! {|key| key.to_s.camelize(:lower)} || {}
 
-    res = BackendSchema.execute(query, variables: converted, context: context, operation_name: nil)
+    res = ResonantHorizonApiSchema.execute(query, variables: converted, context: context, operation_name: nil)
     @gql_response = GQLResponse.new(res.to_h)
   end
 

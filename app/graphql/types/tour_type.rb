@@ -40,5 +40,9 @@ module Types
     def passengers
       Loaders::AssociationLoader.for(object.class, :passengers).load(object)
     end
+
+    def hotels
+      Loaders::AssociationLoader.for(object.class, :hotels).load(object)
+    end
   end
 end

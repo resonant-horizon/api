@@ -4,6 +4,7 @@ class Organization < ApplicationRecord
   has_many   :tours
   has_many   :seasons
   has_many   :venues
+  has_many   :hotels
   has_many   :contacts
 
   validates_presence_of :name,
