@@ -6,6 +6,7 @@ module Types
     field :tours, [Types::TourType], null: true
     field :contacts, [Types::ContactType], null: true
     field :venues, [Types::VenueType], null: true
+    field :hotels, [Types::HotelType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
