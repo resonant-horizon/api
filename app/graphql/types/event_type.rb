@@ -8,7 +8,7 @@ module Types
     field :description, String, null: true
     field :start_time, GraphQL::Types::ISO8601DateTime, null: false
     field :end_time, GraphQL::Types::ISO8601DateTime, null: true
-    field :note, String, null: true
+    field :notes, String, null: true
     field :location, String, null: true
 
     # def organization
