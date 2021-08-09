@@ -66,6 +66,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :flight, Types::FlightType, null: false do
+      description 'Find a flight by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -112,6 +117,10 @@ module Types
 
     def hotel(id:)
       Hotel.find(id)
+    end
+
+    def flight(id:)
+      Flight.find(id)
     end
   end
 end

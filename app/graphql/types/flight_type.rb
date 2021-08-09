@@ -1,8 +1,8 @@
 module Types
   class FlightType < Types::BaseObject
-    # field :contacts
     field :service_day, Types::ServiceDayType, null: false
     field :passengers, [Types::PassengerType], null: false
+    field :employees, [Types::EmployeeType], null: false
 
     field :id, ID, null: false
     field :airline_network, String, null: false
@@ -20,6 +20,10 @@ module Types
 
     def passengers
       Loaders::AssociationLoader.for(object.class, :passengers).load(object)
+    end
+
+    def employees
+      Loaders::AssociationLoader.for(object.class, :employees).load(object)
     end
   end
 end
