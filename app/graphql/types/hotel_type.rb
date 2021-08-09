@@ -1,6 +1,6 @@
 module Types
   class HotelType < Types::BaseObject
-    # field :contacts
+    field :contacts, [Types::ContactType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -15,8 +15,8 @@ module Types
     #   Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
     # end
     #
-    # def employees
-    #   Loaders::AssociationLoader.for(object.class, :employees).load(object)
-    # end
+    def contacts
+      Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
   end
 end
