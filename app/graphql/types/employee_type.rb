@@ -47,5 +47,9 @@ module Types
     def tours
       Loaders::AssociationLoader.for(object.class, :tours).load(object)
     end
+
+    def passengers
+      Loaders::AssociationLoader.for(object.class, :passengers).load(object)
+    end
   end
 end
