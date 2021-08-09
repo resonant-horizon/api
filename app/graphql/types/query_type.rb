@@ -56,6 +56,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :event, Types::EventType, null: false do
+      description 'Find an event by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -94,6 +99,10 @@ module Types
 
     def service_day(id:)
       ServiceDay.find(id)
+    end
+
+    def event(id:)
+      Event.find(id)
     end
   end
 end
