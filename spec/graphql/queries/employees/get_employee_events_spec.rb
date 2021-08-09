@@ -2,7 +2,7 @@ require 'rails_helper'
 include GraphQL::TestHelpers
 
 RSpec.describe Types::QueryType, type: :request do
-  describe 'get employees for an event' do
+  describe 'get events for an employees' do
     let(:user) { create(:user) }
     let(:org) { create(:organization, user: user) }
     let(:org2) { create(:organization, user: user) }
@@ -34,7 +34,7 @@ RSpec.describe Types::QueryType, type: :request do
         event
         emp
         event_employee
-        query query_string_all, variables: { id: "#{event.id}" }
+        query query_string_all, variables: { id: "#{emp.id}" }
       end
 
       it 'should return no errors' do
@@ -46,7 +46,7 @@ RSpec.describe Types::QueryType, type: :request do
         expect(gql_response.data["employee"]["events"]).to eq([{
           "id" => event.id.to_s,
           "name" => event.name,
-          "startTime" => Time.parse(event.start_time.to_s).iso8601 
+          "startTime" => Time.parse(event.start_time.to_s).iso8601
         }])
       end
     end
