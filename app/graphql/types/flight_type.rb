@@ -1,6 +1,5 @@
 module Types
   class FlightType < Types::BaseObject
-    # field :contacts
     field :service_day, Types::ServiceDayType, null: false
     field :passengers, [Types::PassengerType], null: false
 
