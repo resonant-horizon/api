@@ -2,6 +2,7 @@ module Types
   class VenueType < Types::BaseObject
     field :organization, Types::OrganizationType, null: false
     field :contacts, [Types::ContactType], null: true
+    field :service_days, [Types::ServiceDayType], null: true
 
     field :id, ID, null: false
     field :name, String, null: false
@@ -19,6 +20,10 @@ module Types
 
     def contacts
       Loaders::AssociationLoader.for(object.class, :contacts).load(object)
+    end
+
+    def service_days
+      Loaders::AssociationLoader.for(object.class, :service_days).load(object)
     end
   end
 end
