@@ -6,6 +6,7 @@ module Types
     field :biography, Types::BiographyType, null: true
     field :traveler, Types::TravelerType, null: true
     field :roles, [Types::RoleType], null: true
+    field :events, [Types::EventType], null: true
 
     field :id, ID, null: false
     field :employment_status, String, null: false
@@ -24,6 +25,10 @@ module Types
 
     def roles
       Loaders::AssociationLoader.for(object.class, :roles).load(object)
+    end
+
+    def events
+      Loaders::AssociationLoader.for(object.class, :events).load(object)
     end
   end
 end
