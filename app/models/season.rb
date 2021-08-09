@@ -6,6 +6,7 @@ class Season < ApplicationRecord
   has_many :venues, through: :service_days
   has_many :hotels, through: :service_days
   has_many :contacts, through: :venues
+  has_many :flights, through: :service_days
 
   validates_presence_of :name,
                         :start_date,

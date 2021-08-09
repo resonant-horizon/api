@@ -8,6 +8,7 @@ describe Season do
     it { should have_many(:venues).through(:service_days) }
     it { should have_many(:hotels).through(:service_days) }
     it { should have_many(:contacts).through(:venues) }
+    it { should have_many(:flights).through(:service_days) }
   end
 
   describe 'validations' do
