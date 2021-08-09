@@ -61,6 +61,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :hotel, Types::HotelType, null: false do
+      description 'Find a hotel by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -103,6 +108,10 @@ module Types
 
     def event(id:)
       Event.find(id)
+    end
+
+    def hotel(id:)
+      Hotel.find(id)
     end
   end
 end
