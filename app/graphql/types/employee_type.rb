@@ -39,5 +39,9 @@ module Types
     def seasons
       Loaders::AssociationLoader.for(object.class, :seasons).load(object)
     end
+
+    def service_days
+      Loaders::AssociationLoader.for(object.class, :service_days).load(object)
+    end
   end
 end
