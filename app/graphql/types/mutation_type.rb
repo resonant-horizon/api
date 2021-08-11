@@ -64,10 +64,10 @@ module Types
       description 'Create a tour'
     end
 
-    # field :update_tour, mutation: Mutations::Tours::UpdateTour do
-    #   description 'Update a tour'
-    # end
-    #
+    field :update_tour, mutation: Mutations::Tours::UpdateTour do
+      description 'Update a tour'
+    end
+
     field :destroy_tour, mutation: Mutations::Tours::DestroyTour do
       description 'Destroy a tour'
     end
