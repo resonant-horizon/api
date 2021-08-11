@@ -80,8 +80,8 @@ module Types
     #   description 'Update a season'
     # end
     #
-    # field :destroy_season, mutation: Mutations::Seasons::DestroySeason do
-    #   description 'Destroy a season'
-    # end
+    field :destroy_season, mutation: Mutations::Seasons::DestroySeason do
+      description 'Destroy a season'
+    end
   end
 end
