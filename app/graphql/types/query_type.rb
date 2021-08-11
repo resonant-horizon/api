@@ -71,6 +71,11 @@ module Types
       argument :id, ID, required: true
     end
 
+    field :contact, Types::ContactType, null: false do
+      description 'Find a contact by ID'
+      argument :id, ID, required: true
+    end
+
     def user(id:)
       User.find(id)
     end
@@ -121,6 +126,10 @@ module Types
 
     def flight(id:)
       Flight.find(id)
+    end
+
+    def contact(id:)
+      Contact.find(id)
     end
   end
 end
