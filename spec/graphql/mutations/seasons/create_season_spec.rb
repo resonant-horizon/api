@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 module Mutations
-  module Tours
-    RSpec.describe CreateTour, type: :request do
+  module Seasons
+    RSpec.describe CreateSeason, type: :request do
       describe '.resolve' do
-        it 'creates a tour' do
+        it 'creates a season' do
           user = create(:user)
           user2 = create(:user)
           organization = create(:organization, user: user)
@@ -13,40 +13,39 @@ module Mutations
             post '/graphql', params:
               { query: g_query(organization_id: organization.id)
               }
-          end.to change { Tour.count }.by(1)
+          end.to change { Season.count }.by(1)
         end
 
-        it 'returns a tour' do
+        it 'returns a season' do
           user = create(:user)
           user2 = create(:user)
           organization = create(:organization, user: user)
 
           post '/graphql', params: { query: g_query(organization_id: organization.id) }
+
           json = JSON.parse(response.body, symbolize_names: true)
-          data = json[:data][:createTour]
+          data = json[:data][:createSeason]
 
           expect(data).to include(
-            id: "#{Tour.first.id}",
+            id: "#{Season.first.id}",
             organization: { "id": organization.id.to_s },
-            name: Tour.first.name,
-            description: Tour.first.description,
-            startDate: Tour.first.start_date.to_s,
-            endDate: Tour.first.end_date.to_s,
-            isArchived: Tour.first.is_archived,
-            isInternational: Tour.first.is_international
+            name: Season.first.name,
+            description: Season.first.description,
+            startDate: Season.first.start_date.to_s,
+            endDate: Season.first.end_date.to_s,
+            isArchived: Season.first.is_archived
           )
         end
 
         def g_query(organization_id:)
           <<~GQL
             mutation {
-              createTour( input: {
+              createSeason( input: {
                 organizationId: "#{organization_id}"
-                name: "Tour Name"
-                description: "The Last Tour"
+                name: "Season Name"
+                description: "The Last Season"
                 startDate: "2050-01-01"
                 endDate: "2050-02-01"
-
               } ){
                 id
                 name
@@ -57,7 +56,6 @@ module Mutations
                 startDate
                 endDate
                 isArchived
-                isInternational
               }
             }
           GQL
@@ -78,7 +76,7 @@ module Mutations
         def g_query(user_id:, organization_id:)
           <<~GQL
             mutation {
-              createTour( input: {
+              createSeason( input: {
                 organizationId: #{organization_id}
               } ){
                 id
