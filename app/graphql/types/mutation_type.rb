@@ -59,5 +59,9 @@ module Types
     field :destroy_traveler, mutation: Mutations::Employees::Travelers::DestroyTraveler do
       description 'Destroy an employee traveler'
     end
+
+    field :create_tour, mutation: Mutations::Tours::CreateTour do
+      description 'Create a tour'
+    end
   end
 end
