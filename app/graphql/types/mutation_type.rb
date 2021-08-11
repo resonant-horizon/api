@@ -75,11 +75,11 @@ module Types
     field :create_season, mutation: Mutations::Seasons::CreateSeason do
       description 'Create a season'
     end
-    #
-    # field :update_season, mutation: Mutations::Seasons::UpdateSeason do
-    #   description 'Update a season'
-    # end
-    #
+
+    field :update_season, mutation: Mutations::Seasons::UpdateSeason do
+      description 'Update a season'
+    end
+    
     field :destroy_season, mutation: Mutations::Seasons::DestroySeason do
       description 'Destroy a season'
     end
