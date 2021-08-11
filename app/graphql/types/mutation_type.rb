@@ -59,5 +59,29 @@ module Types
     field :destroy_traveler, mutation: Mutations::Employees::Travelers::DestroyTraveler do
       description 'Destroy an employee traveler'
     end
+
+    field :create_tour, mutation: Mutations::Tours::CreateTour do
+      description 'Create a tour'
+    end
+
+    field :update_tour, mutation: Mutations::Tours::UpdateTour do
+      description 'Update a tour'
+    end
+
+    field :destroy_tour, mutation: Mutations::Tours::DestroyTour do
+      description 'Destroy a tour'
+    end
+
+    field :create_season, mutation: Mutations::Seasons::CreateSeason do
+      description 'Create a season'
+    end
+
+    field :update_season, mutation: Mutations::Seasons::UpdateSeason do
+      description 'Update a season'
+    end
+    
+    field :destroy_season, mutation: Mutations::Seasons::DestroySeason do
+      description 'Destroy a season'
+    end
   end
 end
