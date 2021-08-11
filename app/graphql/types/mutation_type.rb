@@ -68,9 +68,9 @@ module Types
     #   description 'Update a tour'
     # end
     #
-    # field :destroy_tour, mutation: Mutations::Tours::DestroyTour do
-    #   description 'Destroy a tour'
-    # end
+    field :destroy_tour, mutation: Mutations::Tours::DestroyTour do
+      description 'Destroy a tour'
+    end
 
     field :create_season, mutation: Mutations::Seasons::CreateSeason do
       description 'Create a season'
