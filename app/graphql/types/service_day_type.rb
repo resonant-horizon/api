@@ -8,6 +8,8 @@ module Types
     field :events, [Types::EventType], null: true
 
     field :id, ID, null: false
+    field :workable_id, ID, null: false
+    field :workable_type, String, null:false
     field :name, String, null: true
     field :description, String, null: true
     field :has_travel, Boolean, null: false
