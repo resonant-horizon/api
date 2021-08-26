@@ -6,6 +6,7 @@ module Mutations
       argument :name,                String,  required: false
       argument :description,         String,  required: false
       argument :date,                GraphQL::Types::ISO8601Date, required: true
+      argument :has_travel,          Boolean, required: false
       argument :has_rehearsal,       Boolean, required: false
       argument :has_concert,         Boolean, required: false
       argument :has_loadin,          Boolean, required: false
