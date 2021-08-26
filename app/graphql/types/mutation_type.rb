@@ -87,5 +87,9 @@ module Types
     field :create_service_day, mutation: Mutations::ServiceDays::CreateServiceDay do
       description 'Create a service day'
     end
+
+    field :destroy_service_day, mutation: Mutations::ServiceDays::DestroyServiceDay do
+      description 'Destroy a service day'
+    end
   end
 end
