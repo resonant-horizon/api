@@ -95,5 +95,9 @@ module Types
     field :update_service_day, mutation: Mutations::ServiceDays::UpdateServiceDay do
       description 'Update a service day'
     end
+
+    field :create_event, mutation: Mutations::Events::CreateEvent do
+      description 'Create an event'
+    end
   end
 end
