@@ -103,5 +103,9 @@ module Types
     field :destroy_event, mutation: Mutations::Events::DestroyEvent do
       description 'Destroy an event'
     end
+
+    field :update_event, mutation: Mutations::Events::UpdateEvent do
+      description 'Update an event'
+    end
   end
 end
