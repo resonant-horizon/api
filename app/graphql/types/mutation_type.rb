@@ -79,9 +79,33 @@ module Types
     field :update_season, mutation: Mutations::Seasons::UpdateSeason do
       description 'Update a season'
     end
-    
+
     field :destroy_season, mutation: Mutations::Seasons::DestroySeason do
       description 'Destroy a season'
+    end
+
+    field :create_service_day, mutation: Mutations::ServiceDays::CreateServiceDay do
+      description 'Create a service day'
+    end
+
+    field :destroy_service_day, mutation: Mutations::ServiceDays::DestroyServiceDay do
+      description 'Destroy a service day'
+    end
+
+    field :update_service_day, mutation: Mutations::ServiceDays::UpdateServiceDay do
+      description 'Update a service day'
+    end
+
+    field :create_event, mutation: Mutations::Events::CreateEvent do
+      description 'Create an event'
+    end
+
+    field :destroy_event, mutation: Mutations::Events::DestroyEvent do
+      description 'Destroy an event'
+    end
+
+    field :update_event, mutation: Mutations::Events::UpdateEvent do
+      description 'Update an event'
     end
   end
 end
