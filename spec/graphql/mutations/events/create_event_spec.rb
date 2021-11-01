@@ -62,31 +62,32 @@ module Mutations
         end
       end
 
-      # describe 'sad path' do
-      #   it 'returns errors' do
-      #     user = create(:user)
-      #     user2 = create(:user)
-      #     organization = create(:organization, user: user)
-      #     season = create(:season, organization: organization)
-      #
-      #     post '/graphql', params: { query: g_query(workable_id: season.id, workable_type: "#{season.class}") }
-      #     json = JSON.parse(response.body, symbolize_names: true)
-      #     expect(json).to have_key(:errors)
-      #   end
-      #
-      #   def g_query(workable_id:, workable_type:)
-      #     <<~GQL
-      #       mutation {
-      #         createServiceDay( input: {
-      #           workableId: "#{workable_id}"
-      #           workableType: "#{workable_type}"
-      #         } ){
-      #           id
-      #         }
-      #       }
-      #     GQL
-      #   end
-      # end
+      describe 'sad path' do
+        it 'returns errors' do
+          user = create(:user)
+          user2 = create(:user)
+          organization = create(:organization, user: user)
+          day1 = create(:service_day)
+
+          post '/graphql', params: { query: g_query(service_day_id: day1.id) }
+
+          json = JSON.parse(response.body, symbolize_names: true)
+          expect(json).to have_key(:errors)
+        end
+
+        def g_query(service_day_id:)
+          <<~GQL
+            mutation {
+              createServiceDay( input: {
+                serviceDayId: "not an id"
+                startTime: "not a start time"
+              } ){
+                id
+              }
+            }
+          GQL
+        end
+      end
     end
   end
 end
