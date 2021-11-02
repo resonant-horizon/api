@@ -112,10 +112,10 @@ module Types
       description 'Create a flight'
     end
 
-    # field :destroy_flight, mutation: Mutations::Flights::DestroyFlight do
-    #   description 'Destroy a flight'
-    # end
-    #
+    field :destroy_flight, mutation: Mutations::Flights::DestroyFlight do
+      description 'Destroy a flight'
+    end
+    
     # field :update_flight, mutation: Mutations::Flights::UpdateFlight do
     #   description 'Update a flight'
     # end
