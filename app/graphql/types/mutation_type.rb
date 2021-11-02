@@ -107,5 +107,17 @@ module Types
     field :update_event, mutation: Mutations::Events::UpdateEvent do
       description 'Update an event'
     end
+
+    field :create_flight, mutation: Mutations::Flights::CreateFlight do
+      description 'Create a flight'
+    end
+
+    field :destroy_flight, mutation: Mutations::Flights::DestroyFlight do
+      description 'Destroy a flight'
+    end
+
+    field :update_flight, mutation: Mutations::Flights::UpdateFlight do
+      description 'Update a flight'
+    end
   end
 end
