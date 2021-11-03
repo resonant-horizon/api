@@ -119,5 +119,17 @@ module Types
     field :update_flight, mutation: Mutations::Flights::UpdateFlight do
       description 'Update a flight'
     end
+
+    field :create_hotel, mutation: Mutations::Hotels::CreateHotel do
+      description 'Create a hotel'
+    end
+
+    # field :destroy_hotel, mutation: Mutations::Hotels::DestroyHotel do
+    #   description 'Destroy a hotel'
+    # end
+    #
+    # field :update_hotel, mutation: Mutations::Hotels::UpdateHotel do
+    #   description 'Update a hotel'
+    # end
   end
 end
