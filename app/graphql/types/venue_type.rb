@@ -4,15 +4,16 @@ module Types
     field :contacts, [Types::ContactType], null: true
     field :service_days, [Types::ServiceDayType], null: true
 
-    field :id, ID, null: false
-    field :name, String, null: false
-    field :street, String, null: false
-    field :city, String, null: false
-    field :state, String, null: false
-    field :zip, String, null: false
-    field :country, String, null: false
-    field :capacity, Integer, null: true
-    field :is_headquarters, Boolean, null: false
+    field :id,              ID,       null: false
+    field :name,            String,   null: false
+    field :street,          String,   null: false
+    field :city,            String,   null: false
+    field :state,           String,   null: false
+    field :zip,             String,   null: false
+    field :country,         String,   null: false
+    field :is_headquarters, Boolean,  null: true
+    field :capacity,        Integer,  null: true
+
 
     def organization
       Loaders::BelongsToLoader.for(Organization).load(object.organization_id)
