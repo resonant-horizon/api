@@ -79,7 +79,7 @@ module Mutations
           expect(json).to have_key(:errors)
         end
 
-        def g_query(user_id:, organization_id:)
+        def g_query(organization_id:)
           <<~GQL
             mutation {
               createHotel( input: {
