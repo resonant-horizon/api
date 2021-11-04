@@ -131,5 +131,17 @@ module Types
     field :update_hotel, mutation: Mutations::Hotels::UpdateHotel do
       description 'Update a hotel'
     end
+
+    field :create_venue, mutation: Mutations::Venues::CreateVenue do
+      description 'Create a venue'
+    end
+
+    field :destroy_venue, mutation: Mutations::Venues::DestroyVenue do
+      description 'Destroy a venue'
+    end
+
+    field :update_venue, mutation: Mutations::Venues::UpdateVenue do
+      description 'Update a venue'
+    end
   end
 end
