@@ -151,9 +151,9 @@ module Types
     field :destroy_contact, mutation: Mutations::Contacts::DestroyContact do
       description 'Destroy a contact'
     end
-    
-    # field :update_contact, mutation: Mutations::Contacts::UpdateContact do
-    #   description 'Update a contact'
-    # end
+
+    field :update_contact, mutation: Mutations::Contacts::UpdateContact do
+      description 'Update a contact'
+    end
   end
 end
