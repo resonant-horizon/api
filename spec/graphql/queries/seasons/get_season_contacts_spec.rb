@@ -15,10 +15,8 @@ RSpec.describe Types::QueryType, type: :request do
           id
           contacts {
             id
-            venue {
-              id
-              name
-            }
+            contactableId
+            contactableType
             name
             phoneNumber
             email
@@ -47,10 +45,8 @@ RSpec.describe Types::QueryType, type: :request do
         expect(gql_response.data["season"]["contacts"]).to be_an Array
         expect(gql_response.data["season"]["contacts"]).to eq([{
             "id" => contact.id.to_s,
-            "venue" => {
-              "id" => Venue.last.id.to_s,
-              "name" => Venue.last.name
-            },
+            "contactableId" => contact.contactable_id.to_s,
+            "contactableType" => contact.contactable_type,
             "name" => contact.name,
             "phoneNumber" => contact.phone_number,
             "email" => contact.email,

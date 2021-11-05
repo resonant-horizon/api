@@ -143,5 +143,17 @@ module Types
     field :update_venue, mutation: Mutations::Venues::UpdateVenue do
       description 'Update a venue'
     end
+
+    field :create_contact, mutation: Mutations::Contacts::CreateContact do
+      description 'Create a contact'
+    end
+
+    field :destroy_contact, mutation: Mutations::Contacts::DestroyContact do
+      description 'Destroy a contact'
+    end
+
+    field :update_contact, mutation: Mutations::Contacts::UpdateContact do
+      description 'Update a contact'
+    end
   end
 end
