@@ -74,7 +74,7 @@ module Mutations
           user2 = create(:user)
           organization = create(:organization, user: user)
 
-          post '/graphql', params: { query: g_query(user_id: user2.id, organization_id: organization.id) }
+          post '/graphql', params: { query: g_query(organization_id: organization.id) }
           json = JSON.parse(response.body, symbolize_names: true)
           expect(json).to have_key(:errors)
         end
