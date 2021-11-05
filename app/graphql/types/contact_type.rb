@@ -1,6 +1,5 @@
 module Types
   class ContactType < Types::BaseObject
-    # field :venue,        Types::VenueType,        null: false
     field :organization, Types::OrganizationType, null: false
 
     field :id,                  ID, null: false
