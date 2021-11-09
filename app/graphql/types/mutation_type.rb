@@ -163,9 +163,9 @@ module Types
     field :destroy_passenger, mutation: Mutations::Passengers::DestroyPassenger do
       description 'Destroy a passenger'
     end
-    #
-    # field :update_passenger, mutation: Mutations::Passengers::UpdatePassenger do
-    #   description 'Update a passenger'
-    # end
+
+    field :update_passenger, mutation: Mutations::Passengers::UpdatePassenger do
+      description 'Update a passenger'
+    end
   end
 end
