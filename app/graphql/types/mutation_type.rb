@@ -227,5 +227,17 @@ module Types
     # field :update_service_venue, mutation: Mutations::ServiceVenues::UpdateServiceVenue do
     #   description 'Update a service venue'
     # end
+
+    field :create_service_hotel, mutation: Mutations::ServiceHotels::CreateServiceHotel do
+      description 'Create a service hotel'
+    end
+
+    field :destroy_service_hotel, mutation: Mutations::ServiceHotels::DestroyServiceHotel do
+      description 'Destroy a service hotel'
+    end
+
+    # field :update_service_hotel, mutation: Mutations::ServiceHotels::UpdateServiceHotel do
+    #   description 'Update a service hotel'
+    # end
   end
 end
