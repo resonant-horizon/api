@@ -175,9 +175,45 @@ module Types
     field :destroy_event_employee, mutation: Mutations::EventEmployees::DestroyEventEmployee do
       description 'Destroy an event employee'
     end
-    
+
     # field :update_event_employee, mutation: Mutations::EventEmployees::UpdateEventEmployee do
     #   description 'Update an event employee'
+    # end
+
+    field :create_service_employee, mutation: Mutations::ServiceEmployees::CreateServiceEmployee do
+      description 'Create a service employee'
+    end
+
+    field :destroy_service_employee, mutation: Mutations::ServiceEmployees::DestroyServiceEmployee do
+      description 'Destroy a service employee'
+    end
+
+    # field :update_service_employee, mutation: Mutations::ServiceEmployees::UpdateServiceEmployee do
+    #   description 'Update a service employee'
+    # end
+
+    field :create_tour_employee, mutation: Mutations::TourEmployees::CreateTourEmployee do
+      description 'Create a tour employee'
+    end
+
+    field :destroy_tour_employee, mutation: Mutations::TourEmployees::DestroyTourEmployee do
+      description 'Destroy a tour employee'
+    end
+
+    # field :update_tour_employee, mutation: Mutations::TourEmployees::UpdateTourEmployee do
+    #   description 'Update a tour employee'
+    # end
+
+    field :create_season_employee, mutation: Mutations::SeasonEmployees::CreateSeasonEmployee do
+      description 'Create a season employee'
+    end
+
+    field :destroy_season_employee, mutation: Mutations::SeasonEmployees::DestroySeasonEmployee do
+      description 'Destroy a season employee'
+    end
+
+    # field :update_season_employee, mutation: Mutations::SeasonEmployees::UpdateSeasonEmployee do
+    #   description 'Update a season employee'
     # end
   end
 end
