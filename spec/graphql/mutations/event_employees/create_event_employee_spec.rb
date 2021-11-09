@@ -4,7 +4,7 @@ module Mutations
   module EventEmployees
     RSpec.describe CreateEventEmployee, type: :request do
       describe '.resolve' do
-        it 'creates an event' do
+        it 'creates an event employeee' do
           user          =  create(:user)
           user2         =  create(:user)
           organization  =  create(:organization, user: user)
@@ -19,7 +19,7 @@ module Mutations
           end.to change { EventEmployee.count }.by(1)
         end
 
-        it 'returns an event' do
+        it 'returns an event employee' do
           user          =  create(:user)
           user2         =  create(:user)
           organization  =  create(:organization, user: user)
