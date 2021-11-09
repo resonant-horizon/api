@@ -215,5 +215,17 @@ module Types
     # field :update_season_employee, mutation: Mutations::SeasonEmployees::UpdateSeasonEmployee do
     #   description 'Update a season employee'
     # end
+
+    field :create_service_venue, mutation: Mutations::ServiceVenues::CreateServiceVenue do
+      description 'Create a service venue'
+    end
+
+    field :destroy_service_venue, mutation: Mutations::ServiceVenues::DestroyServiceVenue do
+      description 'Destroy a service venue'
+    end
+
+    # field :update_service_venue, mutation: Mutations::ServiceVenues::UpdateServiceVenue do
+    #   description 'Update a service venue'
+    # end
   end
 end
