@@ -167,5 +167,17 @@ module Types
     field :update_passenger, mutation: Mutations::Passengers::UpdatePassenger do
       description 'Update a passenger'
     end
+
+    field :create_event_employee, mutation: Mutations::EventEmployees::CreateEventEmployee do
+      description 'Create an event employee'
+    end
+
+    # field :destroy_event_employee, mutation: Mutations::EventEmployees::DestroyEventEmployee do
+    #   description 'Destroy an event employee'
+    # end
+    #
+    # field :update_event_employee, mutation: Mutations::EventEmployees::UpdateEventEmployee do
+    #   description 'Update an event employee'
+    # end
   end
 end
