@@ -239,5 +239,13 @@ module Types
     # field :update_service_hotel, mutation: Mutations::ServiceHotels::UpdateServiceHotel do
     #   description 'Update a service hotel'
     # end
+
+    field :create_employee_role, mutation: Mutations::EmployeeRoles::CreateEmployeeRole do
+      description 'Create a service hotel'
+    end
+
+    field :destroy_employee_role, mutation: Mutations::EmployeeRoles::DestroyEmployeeRole do
+      description 'Destroy a service hotel'
+    end
   end
 end
